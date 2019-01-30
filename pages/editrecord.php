@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,6 +32,15 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
+  <?php
+
+ if(empty($_SESSION["user_name"])) { 
+
+  echo "<h3> <a href = login.php>Click here to login </a> <h3>";
+}
+else
+{
+?>
 <!-- Site wrapper -->
 <div class="wrapper">
 
@@ -70,13 +82,13 @@
        
                 <li class="treeview">
          
-            <li><a href="findrecord.php"><i class="fa-folder-o"></i> Find Record</a></li>
-            <li><a href="addrecord.php"><i class="fa-folder-o"></i> Add Record</a></li>
-            <li><a href="update.php"><i class="fa-folder-o"></i> Update location</a></li>
+            <li><a href="findrecord.php"><i class="fa fa-folder-o"></i> Find Record</a></li>
+            <li><a href="addrecord.php"><i class="fa fa-folder-o"></i> Add Record</a></li>
+            <li><a href="addlocation.php"><i class="fa fa-folder-o"></i> Add location</a></li>
           </ul>
         <li>
         		<form action="login.php" method="post" id="frmLogout">
-				<input type="submit" name="logout" value="Logout" class="logout-button">
+				<input type="submit" name="logout" class="btn btn-primary btn-block btn-flat" style="width:50%; " value="Logout" class="logout-button">
 				</form>
         </li>
     </section>
@@ -93,7 +105,7 @@
 RECORD ROOM <small>it all starts here</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="homerecord.php"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">editrecord</a></li>
       </ol>
     </section>
@@ -106,10 +118,28 @@ RECORD ROOM <small>it all starts here</small>
         <div class="box-header with-border">
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
+                <form method="" action="">
+                  
+           <?php
+           if (isset($_POST['save'])) {
+            
+           $file=$_POST['filenumber'];
+           echo $file;
+         }
+           ?>
          <?php
          include("connection.php");
          $var=$_POST['editname'];
-         $sql="SELECT  * from view_location where filenumber='$var' limit 1";
+         $sql="SELECT id from view_loc where filenumber='$var'";
+         $result=$conn->query($sql);
+          if ($result->num_rows>0) {
+          while ($row=$result->fetch_assoc()) {
+           foreach ($row as $key => $value) {
+              
+           }
+          }
+          }
+         $sql="SELECT filenumber,year,section,date,subject,name,tag,bundlenumber,location from view_loc where filenumber='$var'";
          $result=$conn->query($sql);	
         
             /* get column metadata */
@@ -133,15 +163,40 @@ RECORD ROOM <small>it all starts here</small>
                                   echo "<tr>";
 
                   echo "<th>$fieldarray[$var]</th>";
-                  echo "<td><input name='id$var' size='40' value='".$value."'/></td>";
+                  echo "<td><input name='$fieldarray[$var]' size='40' value='".$value."' id='$fieldarray[$var]'/></td>";
                   echo "</tr>";
                   $var++;
 
-}
-                }
+} 
 
+                }
 						}
          ?>
+         <script type="text/javascript"> 
+          function edit()
+          {
+          var filenumber=document.getElementById('filenumber').value;
+          var year=document.getElementById('year').value;
+          var section=document.getElementById('section').value;
+          var date =document.getElementById('date').value;
+          var subject=document.getElementById('subject').value;
+          var name=document.getElementById('name').value;
+          var tag=document.getElementById('tag').value;
+          var bundlenumber=document.getElementById('bundlenumber').value;
+          var location=document.getElementById('location').value;
+                  var xmlhttp = new XMLHttpRequest();
+                  xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("updated").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET", "updaterecord.php?filenumber=" + filenumber +"&year=" +year+"&section="+section+"&date="+date+"&subject="+subject+"&name="+name+"&tag="+tag+"&bundlenumber="+bundlenumber+"&location="+location, true);
+        xmlhttp.send();
+        }
+
+         </script> <div id="updated"> hello</div>
+         <input type="button" name="save" value="save" id="save" onclick="edit()">
+         </form>
         <!-- /.box-footer-->
       </div></table>
       <!-- /.box -->
@@ -212,5 +267,8 @@ RECORD ROOM <small>it all starts here</small>
     })
   })
 </script>
+<?php
+}
+?>  
 </body>
 </html>

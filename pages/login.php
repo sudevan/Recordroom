@@ -106,7 +106,7 @@ if(!empty($_POST["logout"])) {
 	    <p class="login-box-msg">Redirecting to dashboard</p>
 	</div>
 <script type="text/javascript">
-window.location.assign("tclist.php"); 
+window.location.assign("homerecord.php"); 
 </script>
 <?php } ?>
 <!-- jQuery 3 -->

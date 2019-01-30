@@ -38,7 +38,9 @@ session_start();
 
  if(empty($_SESSION["user_name"])) { 
 
-  echo "<h3> <a href = login.php>Click here to login </a> <h3>";
+  echo "<h3> <a href = login.php>Click here to login </a>  <div class='overlay'>
+      <i class='fa fa-refresh fa-spin'>loading</i>
+    </div> <h3>";
 }
 else
 {
@@ -50,7 +52,7 @@ else
     <!-- Logo -->
     <a href="#" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>RC</b></span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>RECORD ROOM</b></span>
     </a>
@@ -85,16 +87,16 @@ else
 
 
           <li class="treeview">
-            <li><a href="findrecord.php"><i class="fa-folder-o"></i> Find Record</a></li>
-            <li><a href="addrecord.php"><i class="fa-folder-o"></i> Add Record</a></li>
-            <li><a href="update.php"><i class="fa-folder-o"></i> Update location</a></li>
+            <li><a href="findrecord.php"><i class="fa fa-folder-o"></i> Find Record</a></li>
+            <li><a href="addrecord.php"><i class="fa fa-folder-o"></i> Add Record</a></li>
+            <li><a href="addlocation.php"><i class="fa fa-folder-o"></i> Add Location</a></li>
 
           </ul>
         </li>
        
         <li>
         		<form action="login.php" method="post" id="frmLogout">
-				<input type="submit" name="logout" value="Logout" class="logout-button">
+				<input type="submit" name="logout" class="btn btn-primary btn-block btn-flat" style="width:50%; " value="Logout" class="logout-button">
 				</form>
         </li>
     </section>
@@ -113,14 +115,14 @@ else
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="tclist.php">Record Room</a></li>
+        <li><a href="homerecord.php">Record Room</a></li>
       </ol>
                   <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
 
       					<?php
 						include("connection.php");
-						$sql="SELECT distinct filenumber,year,section,date,subject,personid,bundlenumber,location from view_location order by date desc LIMIT 30";
+						$sql="SELECT distinct filenumber,year,section,date,subject,name,bundlenumber,location from view_loc order by date desc LIMIT 30";
 						$result=$conn->query($sql);
 
             echo "<thead>";

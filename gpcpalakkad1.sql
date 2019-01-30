@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 22, 2019 at 11:06 PM
+-- Generation Time: Jan 30, 2019 at 07:25 AM
 -- Server version: 5.7.24-0ubuntu0.18.04.1
 -- PHP Version: 7.2.10-0ubuntu0.18.04.1
 
@@ -5022,13 +5022,13 @@ INSERT INTO `rec_bundle_record` (`recordid`, `bundlenumber`) VALUES
 --
 CREATE TABLE `rec_details` (
 `id` int(11)
+,`filenumber` int(11)
 ,`year` int(11)
 ,`section` varchar(5)
-,`filenumber` int(11)
-,`Date` date
 ,`subject` varchar(100)
+,`date` date
 ,`name` varchar(100)
-,`bundlenumber` int(11)
+,`tag` text
 );
 
 -- --------------------------------------------------------
@@ -5041,16 +5041,6 @@ CREATE TABLE `rec_location_master` (
   `bundle_number` int(11) NOT NULL,
   `location` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `rec_location_master`
---
-
-INSERT INTO `rec_location_master` (`bundle_number`, `location`) VALUES
-(201, 'A1'),
-(202, 'A2'),
-(204, 'A2'),
-(205, 'A2');
 
 -- --------------------------------------------------------
 
@@ -6268,7 +6258,8 @@ INSERT INTO `rec_person` (`id`, `name`) VALUES
 (1200, ''),
 (1201, ''),
 (1202, ''),
-(1203, '');
+(1203, ''),
+(1204, 'rohit');
 
 -- --------------------------------------------------------
 
@@ -8318,7 +8309,7 @@ INSERT INTO `rec_record_master` (`id`, `section`, `filenumber`, `year`, `subject
 (3444, 'E1', 544, 2008, 'Request for Service Certificate', 555, 'File', 5, '2008-03-29', 1, '2018-11-12 10:07:29'),
 (3445, 'E1', 23, 2008, 'CML for 3 Days', 518, 'File', 11, '2008-01-07', 1, '2018-11-12 10:07:29'),
 (3446, 'E1', 1121, 2007, 'Commutted Leave for 10 Days', 518, 'File', 9, '2007-06-21', 1, '2018-11-12 10:07:29'),
-(3447, 'E1', 6604, 2007, 'CML Application', 705, 'File', 11, '2008-01-02', 1, '2018-11-12 10:07:29'),
+(3447, 'E1', 10, 2007, 'CML Application', 705, 'File', 11, '2008-01-02', 1, '2018-11-12 10:07:29'),
 (3448, 'E1', 1942, 2018, 'About Recovery of Salary', 0, 'File', 4, '2018-06-01', 1, '2018-11-12 10:07:29'),
 (3449, 'E1', 1852, 2018, 'Promotion with Transfer', 706, 'File', 1, '2018-05-31', 1, '2018-11-12 10:07:29'),
 (3450, 'E1', 5467, 2017, 'Appoinment of Assistant Professors with Daily Wages during the Year 2017to18', 0, 'File', 5, '2018-08-06', 1, '2018-11-12 10:07:29'),
@@ -22701,58 +22692,20 @@ INSERT INTO `users` (`email`, `password`, `usertype`) VALUES
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_location`
+-- Stand-in structure for view `view_loc`
 -- (See below for the actual view)
 --
-CREATE TABLE `view_location` (
-`filenumber` int(11)
-,`year` int(11)
-,`section` varchar(5)
-,`date` date
-,`subject` varchar(100)
-,`personid` int(11)
-,`tag` varchar(40)
-,`bundlenumber` int(11)
-,`location` varchar(20)
-);
-
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `view_tags`
--- (See below for the actual view)
---
-CREATE TABLE `view_tags` (
-`filenumber` int(11)
-,`year` int(11)
-,`section` varchar(5)
-,`date` date
-,`subject` varchar(100)
-,`personid` int(11)
-,`tag` varchar(40)
-,`bundlenumber` int(11)
-);
-
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `view_tags2`
--- (See below for the actual view)
---
-CREATE TABLE `view_tags2` (
+CREATE TABLE `view_loc` (
 `id` int(11)
-,`section` varchar(5)
 ,`filenumber` int(11)
 ,`year` int(11)
+,`section` varchar(5)
 ,`subject` varchar(100)
-,`personid` int(11)
-,`category` varchar(20)
-,`pages` int(11)
-,`ddate` date
-,`enteredby` int(11)
-,`inserttime` timestamp
-,`recordid` int(11)
-,`tag` varchar(40)
+,`date` date
+,`name` varchar(100)
+,`tag` text
+,`bundlenumber` int(11)
+,`location` varchar(20)
 );
 
 -- --------------------------------------------------------
@@ -22762,34 +22715,16 @@ CREATE TABLE `view_tags2` (
 --
 DROP TABLE IF EXISTS `rec_details`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `rec_details`  AS  select `rec_record_master`.`id` AS `id`,`rec_record_master`.`year` AS `year`,`rec_record_master`.`section` AS `section`,`rec_record_master`.`filenumber` AS `filenumber`,`rec_record_master`.`ddate` AS `Date`,`rec_record_master`.`subject` AS `subject`,`rec_person`.`name` AS `name`,`rec_bundle_record`.`bundlenumber` AS `bundlenumber` from ((`rec_record_master` left join `rec_person` on((`rec_record_master`.`personid` = `rec_person`.`id`))) join `rec_bundle_record` on((`rec_record_master`.`id` = `rec_bundle_record`.`recordid`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `rec_details`  AS  select `rec_record_master`.`id` AS `id`,`rec_record_master`.`filenumber` AS `filenumber`,`rec_record_master`.`year` AS `year`,`rec_record_master`.`section` AS `section`,`rec_record_master`.`subject` AS `subject`,`rec_record_master`.`ddate` AS `date`,`rec_person`.`name` AS `name`,group_concat(`rec_tags`.`tag` separator ',') AS `tag` from ((`rec_record_master` left join `rec_person` on((`rec_record_master`.`personid` = `rec_person`.`id`))) join `rec_tags` on((`rec_record_master`.`id` = `rec_tags`.`recordid`))) group by `rec_record_master`.`id` ;
 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_location`
+-- Structure for view `view_loc`
 --
-DROP TABLE IF EXISTS `view_location`;
+DROP TABLE IF EXISTS `view_loc`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_location`  AS  select `view_tags`.`filenumber` AS `filenumber`,`view_tags`.`year` AS `year`,`view_tags`.`section` AS `section`,`view_tags`.`date` AS `date`,`view_tags`.`subject` AS `subject`,`view_tags`.`personid` AS `personid`,`view_tags`.`tag` AS `tag`,`view_tags`.`bundlenumber` AS `bundlenumber`,`rec_location_master`.`location` AS `location` from (`view_tags` left join `rec_location_master` on((`view_tags`.`bundlenumber` = `rec_location_master`.`bundle_number`))) ;
-
--- --------------------------------------------------------
-
---
--- Structure for view `view_tags`
---
-DROP TABLE IF EXISTS `view_tags`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_tags`  AS  select `view_tags2`.`filenumber` AS `filenumber`,`view_tags2`.`year` AS `year`,`view_tags2`.`section` AS `section`,`view_tags2`.`ddate` AS `date`,`view_tags2`.`subject` AS `subject`,`view_tags2`.`personid` AS `personid`,`view_tags2`.`tag` AS `tag`,`rec_bundle_record`.`bundlenumber` AS `bundlenumber` from (`view_tags2` left join `rec_bundle_record` on((`view_tags2`.`id` = `rec_bundle_record`.`recordid`))) ;
-
--- --------------------------------------------------------
-
---
--- Structure for view `view_tags2`
---
-DROP TABLE IF EXISTS `view_tags2`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_tags2`  AS  select `rec_record_master`.`id` AS `id`,`rec_record_master`.`section` AS `section`,`rec_record_master`.`filenumber` AS `filenumber`,`rec_record_master`.`year` AS `year`,`rec_record_master`.`subject` AS `subject`,`rec_record_master`.`personid` AS `personid`,`rec_record_master`.`category` AS `category`,`rec_record_master`.`pages` AS `pages`,`rec_record_master`.`ddate` AS `ddate`,`rec_record_master`.`enteredby` AS `enteredby`,`rec_record_master`.`inserttime` AS `inserttime`,`rec_tags`.`recordid` AS `recordid`,`rec_tags`.`tag` AS `tag` from (`rec_record_master` left join `rec_tags` on((`rec_tags`.`recordid` = `rec_record_master`.`id`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_loc`  AS  select `rec_details`.`id` AS `id`,`rec_details`.`filenumber` AS `filenumber`,`rec_details`.`year` AS `year`,`rec_details`.`section` AS `section`,`rec_details`.`subject` AS `subject`,`rec_details`.`date` AS `date`,`rec_details`.`name` AS `name`,`rec_details`.`tag` AS `tag`,`rec_bundle_record`.`bundlenumber` AS `bundlenumber`,`rec_location_master`.`location` AS `location` from ((`rec_details` left join `rec_bundle_record` on((`rec_details`.`id` = `rec_bundle_record`.`recordid`))) left join `rec_location_master` on((`rec_bundle_record`.`bundlenumber` = `rec_location_master`.`bundle_number`))) ;
 
 --
 -- Indexes for dumped tables
@@ -22854,12 +22789,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `rec_person`
 --
 ALTER TABLE `rec_person`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1208;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1205;
 --
 -- AUTO_INCREMENT for table `rec_record_master`
 --
 ALTER TABLE `rec_record_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20005;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20001;
 --
 -- Constraints for dumped tables
 --

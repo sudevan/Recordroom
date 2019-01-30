@@ -30,6 +30,9 @@ session_start();
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <style type="text/css">
+    
+  </style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
  
@@ -82,13 +85,13 @@ else
         <li class="header">MAIN NAVIGATION</li>
       
                 <li class="treeview">
-            <li><a href="findrecord.php"><i class="fa-folder-o"></i> Find Record</a></li>
-            <li><a href="addrecord.php"><i class="fa-folder-o"></i> Add Record</a></li>
-            <li><a href="update.php"><i class="fa-folder-o"></i> Update Location</a></li>
+            <li><a href="findrecord.php"><i class="fa fa-folder-o"></i> Find Record</a></li>
+            <li><a href="addrecord.php"><i class="fa fa-folder-o"></i> Add Record</a></li>
+            <li><a href="addlocation.php"><i class="fa fa-folder-o"></i> Add Location</a></li>
           </ul>
         <li>
             <form action="login.php" method="post" id="frmLogout">
-        <input type="submit" name="logout" value="Logout" class="logout-button">
+        <input type="submit" name="logout" class="btn btn-primary btn-block btn-flat" style="width:50%; " value="Logout" class="logout-button">
         </form>
         </li>
     </section>
@@ -114,12 +117,13 @@ else
                 <tr>
                 <td>drop excel file here :</td>
                 <td><input type="file" name="file" accept=".xls ,.ods,.xlsx"  /></td>
-                <td><input type="submit" name="upload" value="Upload" /></td>
+                <td><input type="submit"class="btn btn-block btn-success" name="upload" value="Upload" /></td>
                 </tr>
               </table>
 
             </form><br><br>
-      <form method="post" action="update.php">
+      <form method="post" action="addlocation.php">
+        <div class="form-data">
         <div class="form-group">
                   <label>Bundle number</label>
                   <input type="text" name="bundlenumber" class="form-control" placeholder="Enter the bundlenumber" style="width:250px;">
@@ -128,9 +132,9 @@ else
                   <label>location</label>
                   <input type="text" name="location" class="form-control" placeholder="Enter the location" style="width:250px;">
                 </div>
-
-                <input type="submit" name="save" value="save"><br><br>
-                <table>
+                <div class="form-group">
+               <input type="submit"class="btn btn-block btn-success" name="save" value="save" style="width:10%; " /></div>
+               
                 <?php
                
                 include("connection.php");
@@ -140,18 +144,18 @@ else
                 $location=$_POST['location'];
                 $sql="INSERT into rec_location_master values ('$bundlenumber','$location')";
                 $result=$conn->query($sql);
-                 if (!$result) {
-              echo "<script>alert('error occured during insertion')</script>";
-                 }echo "<script>alert('successfully inserted')</script>";
+                 if ($result) {
+              echo "<script>alert('successfully inserted data')</script>";
+                 }else{echo "<script>alert('oops something went wrong !!!!')</script>";}
                 }
-         ?></table>
+         ?></div>
      </form>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">Record Room</a></li>
       </ol>
     </section>
-    
+   
     <!-- Main content -->
   <!--div class="col-md-3"-->
       </div>
@@ -178,27 +182,7 @@ else
     <!-- Create the tabs -->
 
     <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- Home tab content -->
-      <div class="tab-pane" id="control-sidebar-home-tab">
-         <!-- /.control-sidebar-menu -->
-
-        <!-- /.control-sidebar-menu -->
-
-      </div>
-      <!-- /.tab-pane -->
-      <!-- Stats tab content -->
-   
-      <!-- /.tab-pane -->
-      <!-- Settings tab content -->
-      <!-- /.tab-pane -->
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
-  <div class="control-sidebar-bg"></div>
-</div>
+    
 <!-- ./wrapper -->
 
 <!-- jQuery 3 -->

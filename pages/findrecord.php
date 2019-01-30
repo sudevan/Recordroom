@@ -84,16 +84,16 @@ else
       
 
           <li class="treeview">
-             <li><a href="findrecord.php"><i class="fa-folder-o"></i> Find Record</a></li>
-            <li><a href="addrecord.php"><i class="fa-folder-o"></i> Add Record</a></li>
-            <li><a href="update.php"><i class="fa-folder-o"></i> Update Location</a></li>
+             <li><a href="findrecord.php"><i class="fa fa-folder-o"></i> Find Record</a></li>
+            <li><a href="addrecord.php"><i class="fa fa-folder-o"></i> Add Record</a></li>
+            <li><a href="addlocation.php"><i class="fa fa-folder-o"></i> Add Location</a></li>
           </ul>
         </li>
 
        
         <li>
         		<form action="login.php" method="post" id="frmLogout">
-				<input type="submit" name="logout" value="Logout" class="logout-button">
+				<input type="submit" name="logout" class="btn btn-primary btn-block btn-flat" style="width:50%; " value="Logout" class="logout-button">
 				</form>
         </li>
     </section>
@@ -112,7 +112,7 @@ else
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="tclist.php">Record Room</a></li>
+        <li><a href="homerecord.php">Record Room</a></li>
       </ol>
     </section>
     
@@ -171,7 +171,12 @@ else
             <input type="text" name="tags" id="tags" value="" class="form-control" placeholder="space seperated tags" />
         </div> <!--div class="form-group"-->
           </div><!--div class="col-md-3"-->
-
+ <div class="col-md-2">
+        <div class="form-group">
+            <label>Bundle Number</label>
+            <input type="text" name="bundlenumber" id="bundlenumber" value="" class="form-control" placeholder="Enter the bundle Number" />
+        </div> <!--div class="form-group"-->
+          </div>
 
         <div class="col-md-2">
         <div class="form-group">
@@ -206,16 +211,18 @@ else
           $tags=$_POST['tags'];
           $person=$_POST['person'];
           $filenumber=$_POST['filenumber'];
+          $bundlenumber=$_POST['bundlenumber'];
 
         $exploded=explode(" ",$tags);
 
-        $sql="SELECT distinct filenumber,year,section,date,subject,personid,bundlenumber,location from view_location  where " ;
+        $sql="SELECT filenumber,year,section,date,subject,name,tag,bundlenumber,location from view_loc  where " ;
+        
         $conjunction="";
-          //$sql = "SELECT recordid,tag from rec_tags where tag='$tag'";
         if(!empty($section))
         {
           $sql=$sql."section='$section'";
           $conjunction=" and ";
+          
 
         }
         if (!empty($filenumber)) {
@@ -229,12 +236,17 @@ else
 
         }
         if (!empty($person)) {
-          $sql=$sql.$conjunction."personid in (SELECT id from rec_person where name like '%$person%') ";
+          $sql=$sql.$conjunction."name like '%$person%'";
 
           $conjunction=" and ";
         }
         if (!empty($tags)) {
-          $sql=$sql.$conjunction."recordid in (SELECT recordid from rec_tags where tag in ('".implode("','",$exploded)."'))";
+          $sql=$sql.$conjunction."id in (SELECT recordid from rec_tags where tag in ('".implode("','",$exploded)."'))";
+        
+           $conjunction=" and ";
+        }
+        if (!empty($bundlenumber)) {
+          $sql=$sql.$conjunction."bundlenumber='$bundlenumber'";
         }
          
 						$result=$conn->query($sql);
@@ -263,8 +275,8 @@ else
                     $var='0';
                   foreach($row as $key=>$value)
                   {  
-                    if ($fieldarray[$var]==='filenumber') {
-                    echo "<td><form action='editrecord.php' method='POST'>$value<br><input type='hidden' name='editname' value='".$value."'/><input type='submit' name='submit-btn' value='edit' /></form></td>";
+                    if ($fieldarray[$var]==='filenumber' ) {
+                    echo "<td><form action='editrecord.php' method='POST'>$value<br><input type='hidden' name='editname' value='".$value."'/><input type='submit'class='btn btn-block btn-success' name='submit-btn' value='edit' /></form></td>";
                     $var++; 
                     continue;
                       }
@@ -320,30 +332,6 @@ else
   </footer>
 
   <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- Home tab content -->
-      <div class="tab-pane" id="control-sidebar-home-tab">
-         <!-- /.control-sidebar-menu -->
-
-        <!-- /.control-sidebar-menu -->
-
-      </div>
-      <!-- /.tab-pane -->
-      <!-- Stats tab content -->
-   
-      <!-- /.tab-pane -->
-      <!-- Settings tab content -->
-      <!-- /.tab-pane -->
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
-  <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
 

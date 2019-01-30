@@ -82,13 +82,13 @@ else
         <li class="header">MAIN NAVIGATION</li>
       
                 <li class="treeview">
-            <li><a href="findrecord.php"><i class="fa-folder-o"></i> Find Record</a></li>
-            <li><a href="addrecord.php"><i class="fa-folder-o"></i> Add Record</a></li>
-            <li><a href="update.php"><i class="fa-folder-o"></i> Update Location</a></li>
+            <li><a href="findrecord.php"><i class="fa fa-folder-o"></i> Find Record</a></li>
+            <li><a href="addrecord.php"><i class="fa fa-folder-o"></i> Add Record</a></li>
+            <li><a href="addlocation.php"><i class="fa fa-folder-o"></i> Add Location</a></li>
           </ul>
         <li>
         		<form action="login.php" method="post" id="frmLogout">
-				<input type="submit" name="logout" value="Logout" class="logout-button">
+				<input type="submit" name="logout"class="btn btn-primary btn-block btn-flat" style="width:50%; " value="Logout" class="logout-button">
 				</form>
         </li>
     </section>
@@ -107,7 +107,7 @@ else
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="tclist.php">Record Room</a></li>
+        <li><a href="homerecord.php">Record Room</a></li>
       </ol>
     </section>
     
@@ -121,7 +121,7 @@ else
                 <tr>
                 <td>drop excel file here :</td>
                 <td><input type="file" name="file" accept=".xls ,.ods,.xlsx"  /></td>
-                <td><input type="submit" value="Upload" /></td>
+                <td><input type="submit"class="btn btn-block btn-success" value="Upload" /></td>
                 </tr>
               </table>
 
@@ -190,7 +190,7 @@ else
                   <input type="text" name="bundlenumber" class="form-control" placeholder="Enter your bundlenumber" style="width:400px;">
                 </div>
                
-               <input type="submit" name="save" value="save record">
+               <input type="submit" class="btn btn-block btn-success" name="save" value="save record"style="width:10%; ">
           </div>
       <?php
                   include("connection.php");
