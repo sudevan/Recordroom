@@ -34,10 +34,8 @@ session_start();
     
   </style>
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
- 
-
-<?php
+<body class="hold-transition skin-blue layout-top-nav">
+  <?php
 
  if(empty($_SESSION["user_name"])) { 
 
@@ -46,69 +44,56 @@ session_start();
 else
 {
 ?>
-<!-- Site wrapper -->
 <div class="wrapper">
 
   <header class="main-header">
-    <!-- Logo -->
-    <a href="#" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>R</b>C</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>RECORD ROOM</b></span>
-    </a>
-    <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
+      <div class="container">
+        <div class="navbar-header">
+          <a href="" class="navbar-brand"><b>RECORD ROOM</b></a>
+           
+        </div>
 
-      
-    </nav>
-  </header>
-
-
-  <!-- Left side column. contains the sidebar -->
-  <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-      <!-- Sidebar user panel sudevan removed -->
-      <!-- search form -->
-      
-      <!-- /.search form -->
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">MAIN NAVIGATION</li>
-      
-                <li class="treeview">
-            <li><a href="findrecord.php"><i class="fa fa-folder-o"></i> Find Record</a></li>
-            <li><a href="addrecord.php"><i class="fa fa-folder-o"></i> Add Record</a></li>
-            <li><a href="addlocation.php"><i class="fa fa-folder-o"></i> Add Location</a></li>
-          </ul>
-        <li>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li ><a href="addrecord.php"><i class="fa fa-folder-o"></i>Add Record</a></li>
+            <li><a href="findrecord.php"><i class="fa fa-folder-o"></i>Find Record</a></li>
+             <li ><a href="addlocation.php"><i class="fa fa-folder-o"></i>Add Location</a></li>
+           
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search">
+            </div>
+          </form>
+              <li>
             <form action="login.php" method="post" id="frmLogout">
-        <input type="submit" name="logout" class="btn btn-primary btn-block btn-flat" style="width:50%; " value="Logout" class="logout-button">
+        <input type="submit" name="logout" value="Logout" class="btn btn-block btn-success" style="margin-top: 10px;">
         </form>
         </li>
-    </section>
-    <!-- /.sidebar -->
-  </aside>
 
-  <!-- =============================================== -->
-
-  <!-- Content Wrapper. Contains page content -->
+        </div>
+        <!-- /.navbar-collapse -->
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+  </header>
+  <!-- Full Width Column -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-       Record room
-        <small>update records</small>
-      </h1>
-<br><br>
+    <div class="container">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h3>
+          RECORD ROOM
+          <small>;)</small>
+        </h3>
+        <ol class="breadcrumb">
+          <li><a href="homerecord.php"><i class="fa fa-spin fa-refresh"></i> Home</a></li>
+          <li class="active">add location</li>
+        </ol>
+      </section>
 <form enctype="multipart/form-data" action="excelUpload.php" method="post" style="padding-left: 60px;">
 
             <input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
@@ -133,8 +118,10 @@ else
                   <input type="text" name="location" class="form-control" placeholder="Enter the location" style="width:250px;">
                 </div>
                 <div class="form-group">
-               <input type="submit"class="btn btn-block btn-success" name="save" value="save" style="width:10%; " /></div>
-               
+               <input type="submit"class="btn btn-block btn-success" name="save" value="save" style="width:10%; " />
+                            <input type="submit"class="btn btn-primary btn-block btn-flat"style="width:10%; "value="cancel" name="cancel">
+</div>
+               <img src="../back3.jpg" style="position: absolute; width: 45%;left:50%;top:35%;">
                 <?php
                
                 include("connection.php");
@@ -148,14 +135,14 @@ else
               echo "<script>alert('successfully inserted data')</script>";
                  }else{echo "<script>alert('oops something went wrong !!!!')</script>";}
                 }
+
+              if (isset($_POST['cancel'])) {
+                echo"<b>cancelled<b>";
+              }
+
          ?></div>
      </form>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Record Room</a></li>
-      </ol>
-    </section>
-   
+    
     <!-- Main content -->
   <!--div class="col-md-3"-->
       </div>
@@ -171,19 +158,11 @@ else
 
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="https://www.gptcpalakkad.ac.in">che dept</a>.</strong> All rights
+    <strong>Copyright &copy; 2016-2019 <a href="https://www.gptcpalakkad.ac.in">che dept</a>.</strong> All rights
     reserved.
   </footer>
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-
-    <!-- Tab panes -->
-    
-<!-- ./wrapper -->
 
 <!-- jQuery 3 -->
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>

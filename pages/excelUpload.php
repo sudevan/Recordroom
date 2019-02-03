@@ -45,6 +45,7 @@
     if($result)
     {
       echo "successfully inserted data on bundle_location";
+      echo "<script>alert('successfully added the location');window.location.assign('addlocation.php');</script>";
     }
     else
     {

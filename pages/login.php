@@ -3,6 +3,7 @@ session_start();
 include("connection.php");
 	
 $message="";
+echo "$message";
 
 if(!empty($_POST["login"])) {
   $sql="SELECT * from users where email='".$_POST["user_name"]."' and password='".$_POST["password"]."'";
@@ -93,7 +94,7 @@ if(!empty($_POST["logout"])) {
     </div>
     <!-- /.social-auth-links -->
 
-    <a href="#">I forgot my password</a><br>
+    <a href="changep.php">change my password</a><br>
     <a href="#" class="text-center">Register a new membership</a>
     </div>
   <!-- /.login-box-body -->
@@ -103,7 +104,7 @@ if(!empty($_POST["logout"])) {
 } else { 
 ?>
   <div class="login-box-body">
-	    <p class="login-box-msg">Redirecting to dashboard</p>
+	    <p class="login-box-msg"><i class="fa fa-spin fa-refresh"></i> Redirecting to dashboard</p>
 	</div>
 <script type="text/javascript">
 window.location.assign("homerecord.php"); 

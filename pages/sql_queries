@@ -4,14 +4,20 @@
 
 
 
-VIEW REC_DETAILS
-
-create view rec_details as select rec_record_master.id,filenumber,year,section,subject,ddate as date,rec_person.name,group_concat(rec_tags.tag) as tag from rec_record_master left join rec_person on personid=rec_person.id   join rec_tags on rec_record_master.id=rec_tags.recordid group by rec_record_master.id;
 
 
 
+ create view view_location as SELECT rec_bundle_location.bundle_number,rec_bundle_location.locationid,rec_location_master.location from rec_bundle_location left join rec_location_master on rec_bundle_location.locationid=rec_location_master.locationid;
 
 
-VIEW VIEW_LOC
 
-create view view_loc as select id,filenumber,year,section,subject,date,name,tag,rec_bundle_record.bundlenumber,rec_location_master.location from rec_details left join rec_bundle_record on id=rec_bundle_record.recordid left join rec_location_master on rec_bundle_record.bundlenumber=rec_location_master.bundle_number;
+
+
+
+ create view view_tags as select filenumber,year,section,date,subject,personid,tag,rec_bundle_record.bundlenumber from rec_details left join rec_bundle_record on id=rec_bundle_record.recordid;
+
+
+
+ create view view_location as select filenumber,year,section,date,subject,personid,tag,bundlenumber,rec_location_master.location from rec_tags left join rec_location_master on bundlenumber=rec_location_master.bundle_number
+
+  create view view_location2 as select id,filenumber,year,section,date,subject,personid,group_concat(tag) as tag,bundlenumber,location from view_location group by id;

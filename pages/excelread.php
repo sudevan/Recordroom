@@ -75,7 +75,7 @@
 		}
 		return 1;
 
-	}
+	} 
 	function add_tags($recordid,$tags)
 	{
 		global $conn;
@@ -100,7 +100,7 @@
 		$section=$newrecord['section number'];
 		$year=$newrecord['year'];
 		$subject=$newrecord['Subject'];
-		$category=$newrecord['categary'];
+		$category=$newrecord['category'];
 		$ddate=$newrecord['Date'];
 		$enteredby=1;
 		$pages=$newrecord['pages'];

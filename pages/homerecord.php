@@ -31,99 +31,78 @@ session_start();
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
-
-
-<?php
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-blue layout-top-nav">
+  <?php
 
  if(empty($_SESSION["user_name"])) { 
 
-  echo "<h3> <a href = login.php>Click here to login </a>  <div class='overlay'>
-      <i class='fa fa-refresh fa-spin'>loading</i>
-    </div> <h3>";
+  echo "<h3> <a href = login.php>Click here to login </a> <h3>";
 }
 else
 {
 ?>
-<!-- Site wrapper -->
 <div class="wrapper">
 
   <header class="main-header">
-    <!-- Logo -->
-    <a href="#" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>RC</b></span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>RECORD ROOM</b></span>
-    </a>
-    <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
+      <div class="container">
+        <div class="navbar-header">
+          <a href="" class="navbar-brand"><b>RECORD ROOM</b></a>
+           
+        </div>
 
-    
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li ><a href="addrecord.php"><i class="fa fa-folder-o"></i>Add Record</a></li>
+            <li><a href="findrecord.php"><i class="fa fa-folder-o"></i>Find Record</a></li>
+             <li ><a href="addlocation.php"><i class="fa fa-folder-o"></i>Add Location</a></li>
+           
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search">
+            </div>
+          </form>
+              <li>
+            <form action="login.php" method="post" id="frmLogout">
+        <input type="submit" name="logout" value="Logout" class="btn btn-block btn-success" style="margin-top: 10px;">
+        </form>
+        </li>
+
+        </div>
+        <!-- /.navbar-collapse -->
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+      </div>
+      <!-- /.container-fluid -->
     </nav>
   </header>
-
-  <!-- =============================================== -->
-
-  <!-- Left side column. contains the sidebar -->
-  <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-      <!-- Sidebar user panel sudevan removed -->
-      <!-- search form -->
-     
-      <!-- /.search form -->
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">MAIN NAVIGATION</li>
-       
-
-
-          <li class="treeview">
-            <li><a href="findrecord.php"><i class="fa fa-folder-o"></i> Find Record</a></li>
-            <li><a href="addrecord.php"><i class="fa fa-folder-o"></i> Add Record</a></li>
-            <li><a href="addlocation.php"><i class="fa fa-folder-o"></i> Add Location</a></li>
-
-          </ul>
-        </li>
-       
-        <li>
-        		<form action="login.php" method="post" id="frmLogout">
-				<input type="submit" name="logout" class="btn btn-primary btn-block btn-flat" style="width:50%; " value="Logout" class="logout-button">
-				</form>
-        </li>
-    </section>
-    <!-- /.sidebar -->
-  </aside>
-
-  <!-- =============================================== -->
-
-  <!-- Content Wrapper. Contains page content -->
+  <!-- Full Width Column -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Welcome to Record Room 
-        <small>hello</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="homerecord.php">Record Room</a></li>
-      </ol>
-                  <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
+    <div class="container">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h3>
+          RECORD ROOM
+          <small>;)</small>
+        </h3>
+        <ol class="breadcrumb">
+          <li><a href="homerecord.php"><i class="fa fa-spin fa-refresh"></i> Home</a></li>
+          <li class="active">record room</li>
+        </ol>
+      </section>
 
-      					<?php
-						include("connection.php");
-						$sql="SELECT distinct filenumber,year,section,date,subject,name,bundlenumber,location from view_loc order by date desc LIMIT 30";
-						$result=$conn->query($sql);
+      <!-- Main content -->
+      <section class="content">
+         <div class="col-xs-12">
+          <div class="box">
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+            <?php
+            include("connection.php");
+            $sql="SELECT distinct filenumber,year,section,date,subject,name,bundlenumber,location from view_loc order by date desc LIMIT 30";
+            $result=$conn->query($sql);
 
             echo "<thead>";
             echo "<tr>";
@@ -140,23 +119,23 @@ else
             echo "</thead>";
             echo " <tbody>";
             
-						if ($result->num_rows > 0) {
-						
-						
-						    // output data of each row
-						    while($row = $result->fetch_assoc()) {
+            if ($result->num_rows > 0) {
+            
+            
+                // output data of each row
+                while($row = $result->fetch_assoc()) {
                   echo "<tr>";
                   foreach($row as $key=>$value)
                   {
                     echo "<td>$value</td>";
                   }
                   echo "</tr>";
-						    }
-						} else {
-						    echo "0 results";
-						}
-						 mysqli_close($conn);
-						
+                }
+            } else {
+                echo "0 results";
+            }
+             mysqli_close($conn);
+            
                echo" </tbody>";
                 echo" <tfoot>";
                      echo "<tr>";
@@ -173,71 +152,31 @@ else
 
                       echo "</tr>";
                 ?>
-    </section>
-
-    <!-- Main content -->
-	
-                </tbody>
-                <tfoot>
-               <tr></tr>
-                </tfoot>
               </table>
             </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </section>
-    <!-- /.content -->
+          </div></div>
+        <!-- /.box -->
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.container -->
   </div>
   <!-- /.content-wrapper -->
-
   <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
-    </div>
-    <strong>Copyright &copy; 2k16-2k19 <a href="http://www.gptcpalakkad.ac.in">che dept</a>.</strong> All rights
-    reserved.
-  </footer>
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- Home tab content -->
-      <div class="tab-pane" id="control-sidebar-home-tab">
-         <!-- /.control-sidebar-menu -->
-
-        <!-- /.control-sidebar-menu -->
-
+    <div class="container">
+      <div class="pull-right hidden-xs">
       </div>
-      <!-- /.tab-pane -->
-      <!-- Stats tab content -->
-   
-      <!-- /.tab-pane -->
-      <!-- Settings tab content -->
-      <!-- /.tab-pane -->
+      <strong>Copyright &copy; 2016-2019 <a href="http://gptcpalakkad.in">che dept.</a>.</strong> All rights
+      reserved.
     </div>
-  </aside>
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
-  <div class="control-sidebar-bg"></div>
+    <!-- /.container -->
+  </footer>
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery 3 -->
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- DataTables -->
-<script src="../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <!-- SlimScroll -->
 <script src="../bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
@@ -246,9 +185,8 @@ else
 <script src="../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
-<!-- page script -->
 <script>
-  $(function () {
+   $(function () {
     $('#example1').DataTable()
     $('#example2').DataTable({
       'paging'      : true,
@@ -261,8 +199,7 @@ else
   })
 </script>
 <?php
-//clossiing else of isset session
 }
-?>
+?>  
 </body>
 </html>
