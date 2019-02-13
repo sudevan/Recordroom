@@ -84,7 +84,7 @@ else
       <section class="content-header">
         <h3>
           RECORD ROOM
-          <small>;)</small>
+         
         </h3>
         <ol class="breadcrumb">
           <li><a href="homerecord.php"><i class="fa fa-spin fa-refresh"></i> Home</a></li>
@@ -104,8 +104,8 @@ else
               </table>
 
             </form><br><br>
-            <div class="box box-warning" style="padding-left: 60px;">
-                  <div class="box-body">
+            <div class="box box-warning" style="padding-left: 60px;width: 50%;">
+                  <div class="box-body" style="">
             <form action="addrecord.php" role="form" method="post" >
                 <!-- text input -->
                 
@@ -170,8 +170,8 @@ else
                   <input type="text" name="bundlenumber" class="form-control" placeholder="Enter your bundlenumber" style="width:400px;">
                 </div>
                
-               <input type="submit" class="btn btn-block btn-success" name="save" value="save record"style="width:10%; ">
-               <input type="submit"class="btn btn-primary btn-block btn-flat"style="width:10%; "value="cancel" name="cancel">
+               <input type="submit" class="btn btn-block btn-success" name="save" value="save record"style="width:20%;">
+               <input type="submit"class="btn btn-danger btn-block btn-flat"style="width:20%; "value="cancel" name="cancel">
           </div>
       <?php
                   include("connection.php");
@@ -262,14 +262,15 @@ else
                   ?>
               <?php
               if (isset($_POST['cancel'])) {
-                echo"<b>cancelled<b>";
+               
               }
               ?>
                
 
               </form>
       </div>
-      </div><!-- <div class="row"> -->
+      </div>               <img src="../back3.jpg" style="position: absolute; width: 45%;left:54%;top:35%;">
+<!-- <div class="row"> -->
 
       </div>
       <!-- /.row -->

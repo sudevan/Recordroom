@@ -84,7 +84,6 @@ else
       <section class="content-header">
         <h3>
           RECORD ROOM
-          <small>;)</small>
         </h3>
         <ol class="breadcrumb">
           <li><a href="homerecord.php"><i class="fa fa-spin fa-refresh"></i> Home</a></li>
@@ -139,6 +138,12 @@ else
             <input type="text" name="person" id="person" value="" class="form-control"/>
         </div> <!--div class="form-group"-->
           </div>
+                  <div class="col-md-2">
+        <div class="form-group">
+            <label>Year</label>
+            <input type="text" name="year" id="year" value="" class="form-control" placeholder="" />
+        </div> <!--div class="form-group"-->
+          </div><!--div class="col-md-3"-->
         <div class="col-md-2">
         <div class="form-group">
             <label>Tags</label>
@@ -166,13 +171,11 @@ else
 
 
 
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header">
-              
-            </div>
+                        <div class="box box-warning" style="width: 100%;margin-top: 15%; ">
+                  <div class="box-body" style="width: 100%;">
+
             <!-- /.box-header -->
-            <div class="box-body">
+            <div class="box-body" style="width: 100%;">
               <table id="example1" class="table table-bordered table-striped">
            
 				<?php
@@ -186,10 +189,11 @@ else
           $person=$_POST['person'];
           $filenumber=$_POST['filenumber'];
           $bundlenumber=$_POST['bundlenumber'];
+          $year=$_POST['year'];
 
         $exploded=explode(" ",$tags);
 
-        $sql="SELECT id,  filenumber,year,section,date,subject,name,tag,bundlenumber,location from view_loc  where " ;
+        $sql="SELECT id,filenumber,year,section,date,subject,name,tag,bundlenumber,location from view_loc  where " ;
         
         $conjunction="";
         if(!empty($section))
@@ -212,6 +216,10 @@ else
         if (!empty($person)) {
           $sql=$sql.$conjunction."name like '%$person%'";
 
+          $conjunction=" and ";
+        }
+        if (!empty($year)) {
+          $sql=$sql.$conjunction."year='$year'";
           $conjunction=" and ";
         }
         if (!empty($tags)) {

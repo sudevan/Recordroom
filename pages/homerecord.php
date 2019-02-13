@@ -85,7 +85,6 @@ else
       <section class="content-header">
         <h3>
           RECORD ROOM
-          <small>;)</small>
         </h3>
         <ol class="breadcrumb">
           <li><a href="homerecord.php"><i class="fa fa-spin fa-refresh"></i> Home</a></li>
@@ -95,8 +94,10 @@ else
 
       <!-- Main content -->
       <section class="content">
-         <div class="col-xs-12">
-          <div class="box">
+                        <div class="box box-warning" style="width: 100%; ">
+                  <div class="box-body" style="">
+
+            <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
             <?php
@@ -160,7 +161,7 @@ else
       <!-- /.content -->
     </div>
     <!-- /.container -->
-  </div>
+  </div></ul></div></div></nav></header></div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="container">

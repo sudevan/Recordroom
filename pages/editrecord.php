@@ -84,7 +84,6 @@ else
       <section class="content-header">
         <h3>
           RECORD ROOM
-          <small>;)</small>
         </h3>
         <ol class="breadcrumb">
           <li><a href="homerecord.php"><i class="fa fa-spin fa-refresh"></i> Home</a></li>
@@ -161,13 +160,14 @@ else
                   xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 document.getElementById("updated").innerHTML = this.responseText;
-            }
+                
+            }alert('updated');
         };
         xmlhttp.open("GET", "updaterecord.php?id="+id+"&filenumber=" + filenumber +"&year=" +year+"&section="+section+"&date="+date+"&subject="+subject+"&name="+name+"&tag="+tag+"&bundlenumber="+bundlenumber+"&location="+location, true);
         xmlhttp.send();
         }
 
-         </script> <div id="updated"> hello</div>
+         </script>
          <input type="button" name="save" value="save" id="save" onclick="edit()">
          </form>
         <!-- /.box-footer-->

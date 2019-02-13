@@ -87,7 +87,6 @@ else
       <section class="content-header">
         <h3>
           RECORD ROOM
-          <small>;)</small>
         </h3>
         <ol class="breadcrumb">
           <li><a href="homerecord.php"><i class="fa fa-spin fa-refresh"></i> Home</a></li>
@@ -107,6 +106,9 @@ else
               </table>
 
             </form><br><br>
+                        <div class="box box-warning" style="padding-left: 60px;width: 40%;">
+                  <div class="box-body" style="">
+
       <form method="post" action="addlocation.php">
         <div class="form-data">
         <div class="form-group">
@@ -118,10 +120,9 @@ else
                   <input type="text" name="location" class="form-control" placeholder="Enter the location" style="width:250px;">
                 </div>
                 <div class="form-group">
-               <input type="submit"class="btn btn-block btn-success" name="save" value="save" style="width:10%; " />
-                            <input type="submit"class="btn btn-primary btn-block btn-flat"style="width:10%; "value="cancel" name="cancel">
+               <input type="submit"class="btn btn-block btn-success" name="save" value="save" style="width:30%; " />
+                            <input type="submit"class="btn btn-danger btn-block btn-flat"style="width:30%; "value="cancel" name="cancel">
 </div>
-               <img src="../back3.jpg" style="position: absolute; width: 45%;left:50%;top:35%;">
                 <?php
                
                 include("connection.php");
@@ -137,12 +138,12 @@ else
                 }
 
               if (isset($_POST['cancel'])) {
-                echo"<b>cancelled<b>";
+            
               }
 
          ?></div>
-     </form>
-    
+     </form></div></div>
+               <img src="../back3.jpg" style="position: absolute; width: 45%;left:50%;top:35%;">
     <!-- Main content -->
   <!--div class="col-md-3"-->
       </div>
