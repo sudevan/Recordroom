@@ -55,9 +55,9 @@ else
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li ><a href="addrecord.php"><i class="fa fa-folder-o"></i>Add Record</a></li>
-            <li><a href="findrecord.php"><i class="fa fa-folder-o"></i>Find Record</a></li>
-             <li ><a href="addlocation.php"><i class="fa fa-folder-o"></i>Add Location</a></li>
+            <li ><a href="addrecord.php"><button class="btn bg-maroon"><i class="fa fa-folder-o"></i>Add Record</button></a></li>
+            <li><a href="findrecord.php"><button class="btn bg-maroon"><i class="fa fa-folder-o"></i>Find Record</button></a></li>
+             <li ><a href="addlocation.php"><button class="btn bg-maroon"><i class="fa fa-folder-o"></i>Add Location</button></a></li>
            
           <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
