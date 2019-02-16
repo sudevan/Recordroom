@@ -104,22 +104,25 @@ else
               </table>
 
             </form><br><br>
-            <div class="box box-warning" style="padding-left: 60px;width: 50%;">
+            <div class="box box-warning">
                   <div class="box-body" style="">
             <form action="addrecord.php" role="form" method="post" >
                 <!-- text input -->
                 
-                  <div class="form-group">
+                  <div class="col-sm-4" style="margin-bottom: 10px; margin-top: 10px">
+                          <div class="col-sm-12"  >
                   <label>File number</label>
-                  <input type="text" name="filenumber" class="form-control" placeholder="Enter the filenumber" style="width:400px;">
-                </div>    
-                                <div class="form-group">
+                  <input type="text" name="filenumber" class="form-control" placeholder="Enter the filenumber" >
+                </div>    </div>
+                                <div class="col-md-8" style="margin-bottom: 10px;margin-top: 10px">
+                          <div class="col-md-6">
                   <label>Year</label>
-                  <input type="text" name="year" class="form-control" placeholder="Enter the year" style="width:400px;">
-                </div>
-                      <div class="form-group">
+                  <input type="text" name="year" class="form-control" placeholder="Enter the year">
+                </div></div>
+                      <div class="col-sm-4" style="margin-bottom: 10px; margin-top: 10px">
+                          <div class="col-sm-12"  >
             <label>Section</label>
-              <select name="section" id="cboproduct"   class="form-control"  onchange="load_product_type(),loadcomp()" style="width:400px;" >
+              <select name="section" id="cboproduct"   class="form-control"  onchange="load_product_type(),loadcomp()"  >
                 <option value="0" >Select a section</option>
                 <option value="A">A</option>
                 <option value="A1">A1</option>
@@ -135,44 +138,57 @@ else
               </select>
               
         </div>
-
+</div>
                 <!-- textarea -->
-                <div class="form-group">
+               <div class="col-md-8" style="margin-bottom: 10px;margin-top: 10px">
+                          <div class="col-md-6">
                   <label>tags</label>
-                  <textarea class="form-control" name="tags" rows="2" placeholder="Enter the space seperated tag"  style="width:400px;"></textarea>
-                </div>
-                <div class="form-group">
+                  <textarea class="form-control" name="tags" rows="2" placeholder="Enter the space seperated tag"  ></textarea>
+                </div></div>
+                  <div class="col-sm-4" style="margin-bottom: 10px; margin-top: 10px">
+                          <div class="col-sm-12"  >
+
                   <label>Subject</label>
-                  <input type="text" name="subject" class="form-control" placeholder="Enter the subject" style="width:400px;">
-                </div>
-                <div class="form-group">
+                  <input type="text" name="subject" class="form-control" placeholder="Enter the subject" >
+                </div></div>
+                <div class="col-md-8" style="margin-bottom: 10px;margin-top: 10px">
+                          <div class="col-md-6">
                   <label>person name</label>
-                  <input type="text" name="personname" class="form-control" placeholder="Enter the person name" style="width:400px;">
-                </div>
-                <div class="form-group">
+                  <input type="text" name="personname" class="form-control" placeholder="Enter the person name" >
+                </div></div>
+                 <div class="col-sm-4" style="margin-bottom: 10px; margin-top: 10px">
+                          <div class="col-sm-12"  >
                   <label>pages</label>
-                  <input type="text" name="pages" class="form-control" placeholder="Enter the pages" style="width:400px;">
-                </div>
-                <div class="form-group">
+                  <input type="text" name="pages" class="form-control" placeholder="Enter the pages" >
+                </div></div>
+             <div class="col-md-8" style="margin-bottom: 10px;margin-top: 10px">
+                          <div class="col-md-6">
                   <label>category</label>
-                  <input type="text" name="category" class="form-control" placeholder="Enter the category" style="width:400px;">
-                </div>
-                <div class="form-group">
+                  <input type="text" name="category" class="form-control" placeholder="Enter the category" >
+                </div></div>
+               <div class="col-sm-4" style="margin-bottom: 10px; margin-top: 10px">
+                          <div class="col-sm-12"  >
                   <label>date</label>
-                  <input type="text" name="date" class="form-control" placeholder="Enter date" style="width:400px;">
-                </div>
-                <div class="form-group">
+                  <input type="text" name="date" class="form-control" placeholder="Enter date" >
+                </div></div>
+                 <div class="col-md-8" style="margin-bottom: 10px;margin-top: 10px">
+                          <div class="col-md-6">
                   <label>Entered by</label>
-                  <input type="text" name="enteredby" class="form-control" placeholder="Enter your name" style="width:400px;">
-                </div>
-                <div class="form-group">
+                  <input type="text" name="enteredby" class="form-control" placeholder="Enter your name">
+                </div></div>
+                <div class="col-sm-4" style="margin-bottom: 10px; margin-top: 10px">
+                          <div class="col-sm-12"  >
                   <label>bundlenumber</label>
-                  <input type="text" name="bundlenumber" class="form-control" placeholder="Enter your bundlenumber" style="width:400px;">
-                </div>
-               
-               <input type="submit" class="btn btn-block btn-success" name="save" value="save record"style="width:20%;">
-               <input type="submit"class="btn btn-danger btn-block btn-flat"style="width:20%; "value="cancel" name="cancel">
-          </div>
+                  <input type="text" name="bundlenumber" class="form-control" placeholder="Enter your bundlenumber">
+                </div></div>
+               <div class="col-sm-12" style="margin-bottom: 10px;">
+                          <div class="col-sm-4">
+               <input type="submit"  style="width: 150px;margin-top: 22px;" class="btn btn-block btn-success" name="save" value="save record">
+              </div></div>
+              <div class="col-sm-12" style="margin-bottom: 10px;">
+               <div class="col-sm-4">
+               <input type="submit" style="width: 150px;margin-top: 22px;" class="btn btn-danger btn-block "value="cancel" name="cancel"></div></div>
+          
       <?php
                   include("connection.php");
                   if (isset($_POST['save']))
@@ -269,8 +285,7 @@ else
 
               </form>
       </div>
-      </div>               <img src="../back3.jpg" style="position: absolute; width: 45%;left:54%;top:35%;">
-<!-- <div class="row"> -->
+      </div>
 
       </div>
       <!-- /.row -->
