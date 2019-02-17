@@ -34,20 +34,6 @@
 				add_record($recorddata);
 			}
 
-		/*
-			$data = new Spreadsheet_Excel_Reader($file);
-			echo "Total Sheets in this xls file: ".count($data->sheets)."<br /><br />";
-			$numrows=$data->sheets[0]['numRows'];
-			$numcols=$data->sheets[0]['numCols'];
-			$title=$data->sheets[0]['cells'][1];
-			print_r($title);
-			for($i=2;$i<=$numrows;$i++)
-			{
-				for($j=1;$j<=$numcols;$j++)
-				{
-					print_r($data->sheets[0]['cells'][$i][$j]);
-				}
-			} */
 	}
 	function getPersonid($personame)
 	{
@@ -87,11 +73,11 @@
 		foreach ($tagarray as $tag) {
 			$sql = "INSERT INTO rec_tags(recordid,tag) values($recordid,'$tag')";
 			$result=$conn->query($sql);
-			echo $tag;
+			#echo $tag;
 		}
 		
 	}
-	function add_record($newrecord)
+	function addFileRecord($newrecord)
 	{
 		global $conn;
 		
@@ -100,16 +86,21 @@
 		$section=$newrecord['section number'];
 		$year=$newrecord['year'];
 		$subject=$newrecord['Subject'];
-		$category=$newrecord['category'];
 		$ddate=$newrecord['Date'];
 		$enteredby=1;
 		$pages=$newrecord['pages'];
 		$tags=$newrecord['Tag'];
-
 		$bundlenumber = $newrecord['Bundle number'];
-
 		$ddate = date("Y-m-d", strtotime($ddate));
-		
+		$category=$newrecord['category'];
+		if($filenumber == '')
+		{
+			$filenumber='0';
+		}
+		if ($ddate == '') {
+			$ddate="''";
+			# code...
+		}
 		if($newrecord['Person'] != '' )
 		{
 			$personid =  getPersonid($newrecord['Person']);
@@ -118,10 +109,12 @@
 		{
 			$personid=0;
 		}
-		if($pages == ">10" )
+		//if($pages == ">10" || $pages='')
 		{
 			$pages=11;
 		}
+
+		$subject=addcslashes($subject, "'");
 		$sql= "INSERT into $recordtable(section,filenumber,year,subject,category,pages,ddate,enteredby,personid) 	values('$section','$filenumber',$year,'$subject','$category',$pages,'$ddate',$enteredby,$personid)";
 
 
@@ -129,21 +122,18 @@
 		if($result == true)
 		{
 			$bundletable="rec_bundle_record";
-			echo "Inserted $filenumber - ";
+			#echo "Inserted $filenumber - ";
 			$sql="SELECT LAST_INSERT_ID() as id";
 			$result=$conn->query($sql);
 			$row = $result->fetch_assoc();
 			$id=$row['id'];
 			$sql = "INSERT INTO $bundletable(bundlenumber,recordid) values ($bundlenumber,$id)";
 			$result=$conn->query($sql);
-			if($result == true)
+			if($result != true)
 			{
-				echo "Updated Bundle number";
+				#echo "Failed to update bundle";
 			}
-			else
-			{
-				echo "Failed to update bundle";
-			}
+
 
 			if($tags != '')
 			{
@@ -153,12 +143,28 @@
 		}
 		else
 		{
-			echo "Failed to insert $filenumber";
-			echo " $sql";
-		}
+			echo "Failed - $sql<br>";
 
-		echo "<br>";
-	
+		}
+		# code...
+	}
+	function add_record($newrecord)
+	{
+
+		$category=$newrecord['category'];
+
+		
+		switch ($category) {
+			case 'File':
+				addFileRecord($newrecord);
+
+				break;
+			
+			default:
+				addFileRecord($newrecord);
+				# code...
+				break;
+		}
 
 
 	}
@@ -166,52 +172,7 @@
 	#reading uploaded data into an array
 
 	readExcel($_FILES['file']['tmp_name'] );
-	/*
-	if ( $_FILES['file']['tmp_name'] )
-	{	
-		
-	 $dom = DOMDocument::load( $_FILES['file']['tmp_name'] );
-	 $rows = $dom->getElementsByTagName( 'Row' );
-	 $first_row = true;
-	 foreach ($rows as $row)
-	 {
-	 	
-	   if ( !$first_row )
-	   {
-
-	     $cells = $row->getElementsByTagName( 'Cell' );
-	     $index = 1;
-	     foreach( $cells as $cell )
-	     {
-	       //$ind = $cell->getAttribute( 'Index' );
-	       //if ( $ind != null ) $index = $ind;
-	       $student[$title[$index]]= $cell->nodeValue;
-	       $index += 1;
-	     }
-	     $data[] = $student;
-	     add_record($student);
-	     }
-	   else 
-	   {
-	   	
-	   	$first_row = false;
-	   	$index = 1;
-	   	$cells = $row->getElementsByTagName( 'Cell' );
-	   	 foreach( $cells as $cell ){
-	   	 	$ind = $cell->getAttribute( 'Index' );
-	   	 	if ( $ind != null ) $index = $ind;
-
-		 	$title[$index] = $cell->nodeValue;
-		 	$index += 1;
-
-	   	 }
-	   	 print_r($title);
-	   	 
-
-	   	}
-	   	
-	 }
-	}*/
+	
 	?>
 	<html>
 	<body>

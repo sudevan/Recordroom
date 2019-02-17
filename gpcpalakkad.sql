@@ -73,7 +73,7 @@ CREATE TABLE `rec_details` (
 ,`filenumber` int(11)
 ,`year` int(11)
 ,`section` varchar(5)
-,`subject` varchar(100)
+,`subject` varchar(500)
 ,`date` date
 ,`name` varchar(100)
 ,`tag` text
