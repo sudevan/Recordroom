@@ -74,8 +74,10 @@
               <li class="user-footer">
                 
                 <div class="pull-right">
-                  <a href="lockscreen.php" class="btn btn-default btn-flat">Sign out</a>
-                </div>
+ <form action="login.php" method="post" id="frmLogout">
+        <input type="submit" name="logout" value="Logout" class="btn btn-block btn-success" style="margin-top: 10px;">
+        </form>
+                        </div>
               </li>
             </ul>
           </li>
