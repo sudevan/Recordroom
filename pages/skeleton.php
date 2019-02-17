@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Home</title>
+  <title>AddRecord</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -71,7 +71,7 @@ else
 
       
             <!-- /.box-header -->
-            <!-- <div class="box-body"> -->
+            <div class="box-body">
                
 
 
@@ -95,9 +95,9 @@ else
 
 
 
-<div class="table table-responsive">
 
-              <div class=" box-warning">
+
+              <div class="box box-warning" style="padding-left: 60px;width: 50%;">
            
 
 
@@ -110,65 +110,8 @@ else
 
 
 
-                       <!-- main form here -->
+                       main form here
 
-            
-                       <table id="example1" class="table table-bordered table-striped table-responsive">
-            <?php
-            include("connection.php");
-            $sql="SELECT distinct filenumber,year,section,date,subject,name,bundlenumber,location from view_loc order by date desc LIMIT 30";
-            $result=$conn->query($sql);
-
-            echo "<thead>";
-            echo "<tr>";
-            /* get column metadata */
-              // Get field information for all fields
-                while ($fieldinfo=mysqli_fetch_field($result))
-                  {
-     
-                    echo "<th>$fieldinfo->name</th>";
-                    $fieldarray[]=$fieldinfo->name;
-                  }
-
-            echo "</tr>";
-            echo "</thead>";
-            echo " <tbody>";
-            
-            if ($result->num_rows > 0) {
-            
-            
-                // output data of each row
-                while($row = $result->fetch_assoc()) {
-                  echo "<tr>";
-                  foreach($row as $key=>$value)
-                  {
-                    echo "<td>$value</td>";
-                  }
-                  echo "</tr>";
-                }
-            } else {
-                echo "0 results";
-            }
-             mysqli_close($conn);
-            
-               echo" </tbody>";
-                echo" <tfoot>";
-                     echo "<tr>";
-                      /* get column metadata */
-                        // Get field information for all fields
-                         foreach ($fieldarray as $field){
-                           # code...
-                        
-                            {
-               
-                              echo "<th>$field</th>";
-                            }
-                          }
-
-                      echo "</tr>";
-                ?>
-              </table>
-             </div>
 
 
 

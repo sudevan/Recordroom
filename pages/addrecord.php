@@ -1,12 +1,13 @@
-<?php
-session_start();
+
+<?php 
+ session_start();
 ?>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Dashboard</title>
+  <title>AddRecord</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -20,6 +21,16 @@ session_start();
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
+  <!-- Morris chart -->
+  <link rel="stylesheet" href="../bower_components/morris.js/morris.css">
+  <!-- jvectormap -->
+  <link rel="stylesheet" href="../bower_components/jvectormap/jquery-jvectormap.css">
+  <!-- Date Picker -->
+  <link rel="stylesheet" href="../bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="../bower_components/bootstrap-daterangepicker/daterangepicker.css">
+  <!-- bootstrap wysihtml5 - text editor -->
+  <link rel="stylesheet" href="../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,8 +42,8 @@ session_start();
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-blue layout-top-nav" style="background-color: black;">
-  <?php
+<body class="hold-transition skin-blue sidebar-mini">
+    <?php
 
  if(empty($_SESSION["user_name"])) { 
 
@@ -41,57 +52,33 @@ session_start();
 else
 {
 ?>
-<div class="wrapper">
-
-  <header class="main-header">
-    <nav class="navbar navbar-static-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a href="" class="navbar-brand"><b>RECORD ROOM</b></a>
-           
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li ><a href="addrecord.php"><button class="btn bg-orange"><i class="fa fa-folder-o"></i>Add Record</button></a></li>
-            <li><a href="findrecord.php"><button class="btn bg-orange"><i class="fa fa-folder-o"></i>Find Record</button></a></li>
-             <li ><a href="addlocation.php"><button class="btn bg-orange"><i class="fa fa-folder-o"></i>Add Location</button></a></li>
-           
-          <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search">
-            </div>
-          </form>
-              <li>
-            <form action="login.php" method="post" id="frmLogout">
-        <input type="submit" name="logout" value="Logout" class="btn btn-block btn-success" style="margin-top: 10px;">
-        </form>
-        </li>
-
-        </div>
-        <!-- /.navbar-collapse -->
-        <!-- Navbar Right Menu -->
-        <div class="navbar-custom-menu">
-      </div>
-      <!-- /.container-fluid -->
-    </nav>
-  </header>
-  <!-- Full Width Column -->
+<?php
+ include("include.php");
+ ?>
+    <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <div class="container">
-      <!-- Content Header (Page header) -->
-      <section class="content-header">
-        <h3>
-          RECORD ROOM
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+           
+             <div class="box"  style="border-top: 3px solid #00c0ef;">
+            <div class="box-header">
+              <h3 class="box-title">Record Room</h3>
+               
+            </div>
          
-        </h3>
-        <ol class="breadcrumb">
-          <li><a href="homerecord.php"><i class="fa fa-spin fa-refresh"></i> Home</a></li>
-          <li class="active">add record</li>
-        </ol>
-      </section>
-         <form enctype="multipart/form-data" action="excelread.php" method="post" style="padding-left: 60px;">
+       
+                  
+
+      
+            <!-- /.box-header -->
+            <div class="box-body">
+               
+
+
+
+
+                   <!-- excel form here -->
+                    <form enctype="multipart/form-data" action="excelread.php" method="post" style="padding-left: 60px;">
 
             <input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
 
@@ -103,10 +90,42 @@ else
                 </tr>
               </table>
 
-            </form><br><br>
-            <div class="box box-warning">
-                  <div class="box-body" style="">
-            <form action="addrecord.php" role="form" method="post" >
+            </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="box box-warning" style="padding-left: 60px;">
+           
+
+
+
+
+
+
+
+
+
+
+
+                       <!-- main form here -->
+
+
+                       <form action="addrecord.php" role="form" method="post" >
                 <!-- text input -->
                 
                   <div class="col-sm-4" style="margin-bottom: 10px; margin-top: 10px">
@@ -284,80 +303,82 @@ else
                
 
               </form>
-      </div>
-      </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+            
+            </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+         <?php
+    include("footer.php");
+    ?>
+        <!-- /.col -->
       </div>
       <!-- /.row -->
     </section>
     <!-- /.content -->
   </div>
+</div>                         
+    </section>
+    <!-- /.content -->
+  </div>
   <!-- /.content-wrapper -->
 
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-    </div>
-    <strong>Copyright &copy; 2016-2019 <a href="https://www.gptcpalakkad.ac.in">che dept</a>.</strong> All rights
-    reserved.
-  </footer>
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- Home tab content -->
-      <div class="tab-pane" id="control-sidebar-home-tab">
-         <!-- /.control-sidebar-menu -->
-
-        <!-- /.control-sidebar-menu -->
-
-      </div>
-      <!-- /.tab-pane -->
-      <!-- Stats tab content -->
-   
-      <!-- /.tab-pane -->
-      <!-- Settings tab content -->
-      <!-- /.tab-pane -->
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
-  <div class="control-sidebar-bg"></div>
-</div>
 <!-- ./wrapper -->
 
 <!-- jQuery 3 -->
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="../bower_components/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
 <!-- Bootstrap 3.3.7 -->
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- DataTables -->
-<script src="../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<!-- SlimScroll -->
+<!-- Morris.js charts -->
+<script src="../bower_components/raphael/raphael.min.js"></script>
+<script src="../bower_components/morris.js/morris.min.js"></script>
+<!-- Sparkline -->
+<script src="../bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+<!-- jvectormap -->
+<script src="../plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="../plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="../bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="../bower_components/moment/min/moment.min.js"></script>
+<script src="../bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- datepicker -->
+<script src="../bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<!-- Slimscroll -->
 <script src="../bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
 <script src="../bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="../dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
-<!-- page script -->
-<script>
-  $(function () {
-    $('#example1').DataTable()
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
-  })
-</script>
 <?php
 //clossiing else of isset session
 }

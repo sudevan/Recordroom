@@ -105,7 +105,7 @@ else
          <?php
 
          include("connection.php");
-         if (isset($_POST['submit-btn'])) {
+         if (isset($_POST['submit'])) {
 
          $var=$_POST['editname'];
        

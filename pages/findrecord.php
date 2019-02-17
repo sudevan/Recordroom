@@ -1,12 +1,13 @@
-<?php
-session_start();
+
+<?php 
+ session_start();
 ?>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Dashboard</title>
+  <title>AddRecord</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -20,6 +21,16 @@ session_start();
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
+  <!-- Morris chart -->
+  <link rel="stylesheet" href="../bower_components/morris.js/morris.css">
+  <!-- jvectormap -->
+  <link rel="stylesheet" href="../bower_components/jvectormap/jquery-jvectormap.css">
+  <!-- Date Picker -->
+  <link rel="stylesheet" href="../bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="../bower_components/bootstrap-daterangepicker/daterangepicker.css">
+  <!-- bootstrap wysihtml5 - text editor -->
+  <link rel="stylesheet" href="../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,8 +42,8 @@ session_start();
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-blue layout-top-nav">
-  <?php
+<body class="hold-transition skin-blue sidebar-mini">
+    <?php
 
  if(empty($_SESSION["user_name"])) { 
 
@@ -41,63 +52,41 @@ session_start();
 else
 {
 ?>
-<div class="wrapper">
-
-  <header class="main-header">
-    <nav class="navbar navbar-static-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a href="" class="navbar-brand"><b>RECORD ROOM</b></a>
-           
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li ><a href="addrecord.php"><button class="btn bg-maroon"><i class="fa fa-folder-o"></i>Add Record</button></a></li>
-            <li><a href="findrecord.php"><button class="btn bg-maroon"><i class="fa fa-folder-o"></i>Find Record</button></a></li>
-             <li ><a href="addlocation.php"><button class="btn bg-maroon"><i class="fa fa-folder-o"></i>Add Location</button></a></li>
-           
-          <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search">
-            </div>
-          </form>
-              <li>
-            <form action="login.php" method="post" id="frmLogout">
-        <input type="submit" name="logout" value="Logout" class="btn btn-block btn-success" style="margin-top: 10px;">
-        </form>
-        </li>
-
-        </div>
-        <!-- /.navbar-collapse -->
-        <!-- Navbar Right Menu -->
-        <div class="navbar-custom-menu">
-      </div>
-      <!-- /.container-fluid -->
-    </nav>
-  </header>
-  <!-- Full Width Column -->
+<?php
+ include("include.php");
+ ?>
+    <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <div class="container">
-      <!-- Content Header (Page header) -->
-      <section class="content-header">
-        <h3>
-          RECORD ROOM
-        </h3>
-        <ol class="breadcrumb">
-          <li><a href="homerecord.php"><i class="fa fa-spin fa-refresh"></i> Home</a></li>
-          <li class="active">find record</li>
-        </ol>
-      </section>
-	<section class="content">
-      <div class="row">
-              
-      <form action="findrecord.php" method="post">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+           
+             <div class="box"  style="border-top: 3px solid #00c0ef;">
+            
+         
+       
+                  
+
+      
+            <!-- /.box-header -->
+            <div class="box-body">
+               
+
+
+
+
+                   <!-- excel form here -->
+                       <div id="search">
+                        <div class="box-header">
+              <h3 class="box-title">Find Record</h3>
+               
+            </div>
+                    
+
+   <form action="findrecord.php" method="post">
         
          <div class="col-md-12">
-        <div class="col-md-2">
-        <div class="form-group">
+        <div class="col-md-4">
+        <!-- <div class="form-group"> -->
             <label>Section</label>
               <select name="section" id="cboproduct"   class="form-control"  onchange="load_product_type(),loadcomp()" >
                 <option value="0" >Select a section</option>
@@ -114,75 +103,156 @@ else
                 <option value='E2'>E2</option>
               </select>
               
-        </div> <!--div class="form-group"-->
-          </div><!--div class="col-md-3"-->
+        </div> 
+      
+        
 
-
-        <div class="col-md-2">
+        <div class="col-md-4">
         <div class="form-group">
             <label>Filenumber</label>
             <input type="text" name="filenumber" id="filenumber" value="" class="form-control" onkeypress="return numeric(event)"/>
         </div> <!--div class="form-group"-->
           </div><!--div class="col-md-3"-->
+        </div>
 
 
-        <div class="col-md-2">
+        <div class="col-md-12">
+
+        <div class="col-md-8">
         <div class="form-group">
             <label>subject</label>
             <input type="text" name="subject" id="subject" value="" class="form-control"/>
         </div> <!--div class="form-group"-->
           </div><!--div class="col-md-"-->
-<div class="col-md-2">
+</div>
+
+
+
+     <div class="col-md-12">
+
+       <div class="col-md-4">
         <div class="form-group">
             <label>person</label>
             <input type="text" name="person" id="person" value="" class="form-control"/>
         </div> <!--div class="form-group"-->
           </div>
-                  <div class="col-md-2">
+
+                  <div class="col-md-4">
         <div class="form-group">
             <label>Year</label>
             <input type="text" name="year" id="year" value="" class="form-control" placeholder="" />
         </div> <!--div class="form-group"-->
           </div><!--div class="col-md-3"-->
-        <div class="col-md-2">
+       
+</div>
+
+
+
+
+
+
+
+
+
+        <div class="col-md-12">
+
+ <div class="col-md-4">
         <div class="form-group">
             <label>Tags</label>
             <input type="text" name="tags" id="tags" value="" class="form-control" placeholder="space seperated tags" />
         </div> <!--div class="form-group"-->
           </div><!--div class="col-md-3"-->
- <div class="col-md-2">
+
+ <div class="col-md-4">
         <div class="form-group">
             <label>Bundle Number</label>
             <input type="text" name="bundlenumber" id="bundlenumber" value="" class="form-control" placeholder="Enter the bundlenumber" />
         </div> <!--div class="form-group"-->
           </div>
 
-        <div class="col-md-2">
+        
+
+</div>
+
+<div class="col-md-4" style="margin-top: 10px">
+
+<div class="col-md-8">
         <div class="form-group">
             <label></label>
-            <input type="submit" class="btn btn-block btn-success" name="search" value="Search" style="width:50% "  onclick="uptoallotaddRow('upto2')">
+            <input type="submit" class="btn pull-left btn-success" style="width: 100%" name="search" value="Search"  onclick="uptoallotaddRow('upto2')">
+        </div> <!--div class="form-group"-->
+          </div>
+
+</div>
+
+<div class="col-md-6" style="margin-top: 10px"  >
+          <div class="col-md-5">
+        <div class="form-group">
+            <label></label><a href="homerecord.php">
+            <input type="button" class="btn pull-right  btn-danger" style="width: 100%" name="cancel" value="Cancel" ></a>
         </div> <!--div class="form-group"-->
           </div><!--div class="col-md-3"-->
-      </div>
+      
+</div>
+
+
 </form>
+</div>
+
+                   
 
 
 
 
 
 
-                        <div class="box box-warning" style="width: 100%;margin-top: 15%; ">
-                  <div class="box-body" style="width: 100%;">
 
-            <!-- /.box-header -->
-            <div class="box-body" style="width: 100%;">
-              <table id="example1" class="table table-bordered table-striped">
+
+
+
+
+
+
+
+
+
+
+
+              <!-- <div class="box box-warning" style="padding-left: 60px;width: 50%;"> -->
            
-				<?php
+
+
+
+
+
+
+
+ 
+
+
+<div class="table table-responsive" id="table" style="display: none;">
+  <div class="box-header">
+    <div class="col-md-6"><h2>Search Result</h2></div>
+    <div class="col-md-6 ">
+    <button type="button"  style="margin-top:20px; margin-left: 90%" class="btn-danger" name="" value="Back" onclick="window.location.href='findrecord.php';"><i class='fa fa-close'></i>Close</button>
+  </div>
+               
+            </div>
+
+  
+<table id="example1" class="table table-bordered table-striped">
+
+
+           
+        <?php
          include("connection.php");
          if (isset($_POST['search']))
           {
-            echo "<h3 class='box-title'>Search result</h3>";
+            echo "<script>document.getElementById('search').style.display='none';document.getElementById('table').style.display='block';</script>";
+            // echo "<h3 class='box-title'>Search result</h3>";
+             
+
+
           $section=$_POST['section'];
           $subject=$_POST['subject'];
           $tags=$_POST['tags'];
@@ -193,7 +263,7 @@ else
 
         $exploded=explode(" ",$tags);
 
-        $sql="SELECT id,filenumber,year,section,date,subject,name,tag,bundlenumber,location from view_loc  where " ;
+        $sql="SELECT id,filenumber,year,section,date,subject,name,bundlenumber,location from view_loc  where " ;
         
         $conjunction="";
         if(!empty($section))
@@ -231,7 +301,7 @@ else
           $sql=$sql.$conjunction."bundlenumber='$bundlenumber'";
         }
          
-						$result=$conn->query($sql);
+            $result=$conn->query($sql);
 
             echo "<thead>";
             echo "<tr>";
@@ -248,31 +318,33 @@ else
             echo "</thead>";
             echo " <tbody>";
             
-						if ($result->num_rows > 0) {
-						
-						
-						    // output data of each row
-						    while($row = $result->fetch_assoc()) {
+            if ($result->num_rows > 0) {
+            
+            
+                // output data of each row
+                while($row = $result->fetch_assoc()) {
                   echo "<tr>";
                     $var='0';
                   foreach($row as $key=>$value)
                   {  
-                    if ($fieldarray[$var]==='id' ) {
-                    echo "<td><form action='editrecord.php' method='POST'><br><input type='hidden' name='editname' value='".$value."'/><input type='submit'class='btn btn-block btn-success' name='submit-btn' value='edit' /></form></td>";
-                    $var++; 
-                    continue;
-                      }
+                    // if ($fieldarray[$var]==='id' ) {
+                    // echo "<td><form action='editrecord.php' method='POST'><br><input type='submit' class='btn' name='editname' value='".$value."'/></form></td>";
+                    // $var++; 
+                    // continue;
+                    //   }
                   echo "<td>$value</td>";
 
-                } 
-                  echo "</tr>";
-						    }
 
-						} else {
-						    echo "0 results";
-						}
-						 mysqli_close($conn);
-						
+                } 
+                 echo "<td><form action='editrecord.php' method='POST'><br><input type='hidden' class='btn' name='editname' value='".$row['id']."'/><button class='btn btn-success' type='submit' name='submit'><i class='fa fa-edit'></i>Edit</button></form></td>";
+                  echo "</tr>";
+                }
+
+            } else {
+                echo "0 results";
+            }
+             mysqli_close($conn);
+            
                echo" </tbody>";
                 echo" <tfoot>";
                      echo "<tr>";
@@ -292,59 +364,83 @@ else
                 ?> 
                    </tfoot>
               </table>
+
+
+  </div>
+  
+
+
+
+
+
+
+
+
+
+
+            <!-- </div> -->
+            
+          
             </div>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
         </div>
+         <?php
+    include("footer.php");
+    ?>
         <!-- /.col -->
       </div>
       <!-- /.row -->
     </section>
     <!-- /.content -->
   </div>
+</div>                         
+    </section>
+    <!-- /.content -->
+  </div>
   <!-- /.content-wrapper -->
-</div></ul></div></div></nav></header>
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-    </div>
-    <strong>Copyright &copy; 2016-2019 <a href="https://www.gptcpalakkad.ac.in">che dept</a>.</strong> All rights
-    reserved.
-  </footer>
 
-  <!-- Control Sidebar -->
-</div>
+
 <!-- ./wrapper -->
 
 <!-- jQuery 3 -->
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="../bower_components/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
 <!-- Bootstrap 3.3.7 -->
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- DataTables -->
-<script src="../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<!-- SlimScroll -->
+<!-- Morris.js charts -->
+<script src="../bower_components/raphael/raphael.min.js"></script>
+<script src="../bower_components/morris.js/morris.min.js"></script>
+<!-- Sparkline -->
+<script src="../bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+<!-- jvectormap -->
+<script src="../plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="../plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="../bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="../bower_components/moment/min/moment.min.js"></script>
+<script src="../bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- datepicker -->
+<script src="../bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<!-- Slimscroll -->
 <script src="../bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
 <script src="../bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="../dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
-<!-- page script -->
-<script>
-  $(function () {
-    $('#example1').DataTable()
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
-  })
-</script>
 <?php
 //clossiing else of isset session
 }
