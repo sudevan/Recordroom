@@ -118,12 +118,26 @@ else
 
         <div class="col-md-12">
 
-        <div class="col-md-8">
+        <div class="col-md-4">
         <div class="form-group">
             <label>subject</label>
             <input type="text" name="subject" id="subject" value="" class="form-control"/>
         </div> <!--div class="form-group"-->
           </div><!--div class="col-md-"-->
+          <div class="col-md-4">
+        <div class="form-group">
+          <label>Category</label>
+              <select name="category" id="cboproduct"   class="form-control"  onchange="load_product_type(),loadcomp()" >
+                <option value="0" >Select a category</option>
+                <option value="File">File</option>
+                <option value="Receipt Book">Receipt Book</option>
+               <option value="CashBook">CashBook</option>
+                <option value="Register">Register</option>
+                <option value='Cheque'>Cheque</option>
+                <option value="Stock File">Stock File</option>
+                <option value="Tapal">Tapal</option>
+              </select>
+            </div></div>
 </div>
 
 
@@ -260,6 +274,7 @@ else
           $filenumber=$_POST['filenumber'];
           $bundlenumber=$_POST['bundlenumber'];
           $year=$_POST['year'];
+          $category=$_POST['category'];
 
         $exploded=explode(" ",$tags);
 
@@ -296,6 +311,10 @@ else
           $sql=$sql.$conjunction."id in (SELECT recordid from rec_tags where tag in ('".implode("','",$exploded)."'))";
         
            $conjunction=" and ";
+        }
+        if (!empty($category)) {
+          $sql=$sql.$conjunction." category like '%$category%'";
+          $conjunction=" and ";
         }
         if (!empty($bundlenumber)) {
           $sql=$sql.$conjunction."bundlenumber='$bundlenumber'";

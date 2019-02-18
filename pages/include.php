@@ -74,8 +74,14 @@
               <li class="user-footer">
                 
                 <div class="pull-right">
+
                   <a href="login.php" class="btn btn-default btn-flat">Sign out</a>
                 </div>
+<!--  <form action="login.php" method="post" id="frmLogout">
+        <input type="submit" name="logout" value="Logout" class="btn btn-block btn-success" style="margin-top: 10px;">
+        </form> -->
+                        </div>
+
               </li>
             </ul>
           </li>
@@ -111,7 +117,7 @@
        
         <li class="header">LABELS</li>
         <li><a href="homerecord.php"><i class="fa fa-circle-o text-red"></i> <span>Home</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Contact us!</span></a></li>
+        <li><a href="profile.php"><i class="fa fa-circle-o text-yellow"></i> <span>Contact us!</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Help</span></a></li>
       </ul>
     </section>
