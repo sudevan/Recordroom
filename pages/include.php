@@ -42,17 +42,17 @@
           <!-- Notifications: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php echo $_SESSION['name']; ?></span>
+              <img src="../dist/img/user2.png" class="user-image" alt="User Image">
+              <span class="hidden-xs"><?php echo $_SESSION['name']; echo "Username"; ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="../dist/img/user2.png" class="img-circle" alt="User Image">
 
                 <p>
-                  <?php echo $_SESSION['name']; ?>
-                  <small><?php echo $_SESSION['email']; ?></small>
+                  <?php echo $_SESSION['name']; echo "Username"; ?>
+                  <small><?php echo $_SESSION["user_name"]; ?></small>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -62,10 +62,10 @@
                     <a href="#"><?php echo $_SESSION['f_id']; ?></a>
                   </div>
                   <div class="col-xs-4 text-center">
-                    <a href="#"><?php echo $_SESSION['department']; ?></a>
+                    <a href="#"><?php echo $_SESSION['department']; echo"department"?></a>
                   </div>
                   <div class="col-xs-4 text-center">
-                    <a href="#"><?php echo $_SESSION['phonenumber']; ?></a>
+                    <a href="#"><?php echo $_SESSION['phonenumber'];echo "phonenumber"; ?></a>
                   </div>
                 </div>
                 <!-- /.row -->
@@ -74,10 +74,14 @@
               <li class="user-footer">
                 
                 <div class="pull-right">
+
+ <!--                 <a href="login.php" class="btn btn-default btn-flat">Sign out</a>
+                </div> -->
  <form action="login.php" method="post" id="frmLogout">
         <input type="submit" name="logout" value="Logout" class="btn btn-block btn-success" style="margin-top: 10px;">
-        </form>
+        </form> 
                         </div>
+
               </li>
             </ul>
           </li>
@@ -91,15 +95,7 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <!-- Sidebar user panel -->
-      <div class="user-panel">
-        <div class="pull-left image">
-          <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-        </div>
-        <div class="pull-left info">
-          <p>USERNAME</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-        </div>
-      </div>
+  
       <!-- search form -->
       <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
@@ -121,7 +117,7 @@
        
         <li class="header">LABELS</li>
         <li><a href="homerecord.php"><i class="fa fa-circle-o text-red"></i> <span>Home</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Contact us!</span></a></li>
+        <li><a href="profile.php"><i class="fa fa-circle-o text-yellow"></i> <span>Contact us!</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Help</span></a></li>
       </ul>
     </section>

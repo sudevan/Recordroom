@@ -1,5 +1,4 @@
 
-
 <?php 
  session_start();
 ?>
@@ -8,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AddRecord</title>
+  <title>Profile</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -63,7 +62,7 @@ else
            
              <div class="box"  style="border-top: 3px solid #00c0ef;">
             <div class="box-header">
-              <h3 class="box-title">Edit Record</h3>
+              <h3 class="box-title">Contact us..!</h3>
                
             </div>
          
@@ -72,113 +71,44 @@ else
 
       
             <!-- /.box-header -->
-            <div class="box-body">
+            <div class="box-body" style="height: 100%">
                
+                <div class="col-sm-12" style=" margin-top: 50px">
 
-              <div class="col-sm-12">
-                <form method="" action="">
+                  <div class="col-sm-4" style="border-right: 2px solid #367fa9;border-left: 2px solid #367fa9">
+                     <div class="col-sm-12"><center><img src="../dist/img/fazi.jpg" style="height: 180px; width: 180px" class="img-circle" alt="User Image"></center></div>
+                       <div class="col-sm-12"><h3><center><label>MUHAMMED FASIL PT</label></center></h3></div>
+                       <div name="details" class="col-sm-12">
+                         <div class="col-sm-3"><h4><i class="fa fa-envelope"></i></h4></div><div class="col-sm-8"><h4><a href="#" >ptfasil786@gmail.com</a></h4></div> 
+                          <div class="col-sm-3"><h4><i class="fa fa-phone"></i></h4></div><div class="col-sm-8"><h4><a href="#" >+91 81569 40210</a></h4></div>
+                             <div class="col-sm-3"><h4><i class="fa fa-facebook"></i></h4></div><div class="col-sm-8"><h4><a href="https://www.facebook.com/fasil.pt.71" >@muhammedfasil</a></h4></div>
+                       </div>
+
+                  </div>
+
+                  <div class="col-sm-4" style="border-right: 2px solid #367fa9">
+                     <div class="col-sm-12"><center><img src="../dist/img/use.jpg" style="height: 180px; width: 180px" class="img-circle" alt="User Image"></center></div>
+                       <div class="col-sm-12"><h3><center><label>SHINU N</label></center></h3></div>
+                       <div name="details" class="col-sm-12">
+                           <div class="col-sm-3"><h4><i class="fa fa-envelope"></i></h4></div><div class="col-sm-8"><h4><a href="#" >shinun@gmail.com</a></h4></div>
+                             <div class="col-sm-3"><h4><i class="fa fa-phone"></i></h4></div><div class="col-sm-8"><h4><a href="#" >+91 98089 08209</a></h4></div>
+                              <div class="col-sm-3"><h4><i class="fa fa-facebook"></i></h4></div><div class="col-sm-8"><h4><a href="https://www.facebook.com/profile.php?id=100008398609448" >@shinunandakumar</a></h4></div>                       </div>
+                  </div>
+
+                  <div class="col-sm-4" style="border-right: 2px solid #367fa9">
+                    <div class="col-sm-12"><center><img src="../dist/img/sudevan.jpg" style="height: 180px; width: 180px" class="img-circle" alt="User Image"></center></div>
+                       <div class="col-sm-12"><h3><center><label>SUDEVAN K</label></center></h3></div>
+                       <div name="details" class="col-sm-12">
+                      <div class="col-sm-3"><h4><i class="fa fa-envelope"></i></h4></div><div class="col-sm-8"><h4><a href="#" >sudevank@gmail.com</a></h4></div>
+                             <div class="col-sm-3"><h4><i class="fa fa-phone"></i></h4></div><div class="col-sm-8"><h4><a href="#" >+91 72006 68804</a></h4></div>
+                         <div class="col-sm-3"><h4><i class="fa fa-facebook"></i></h4></div><div class="col-sm-8"><h4><a href="https://www.facebook.com/sudevank" >@sudevank</a></h4></div>
+                       </div>
+                  </div>
                   
 
-         <?php
-
-         include("connection.php");
-         if (isset($_GET['id'])) {
-
-         $var=$_GET['id'];
-       
-         $sql="SELECT id,filenumber,year,section,date,subject,name,tag,bundlenumber,location from view_loc where id='$var'";
-         $result=$conn->query($sql);	
-        
-            /* get column metadata */
-          
-              // Get field information for all fields
-                while ($fieldinfo=mysqli_fetch_field($result))
-                  {
-     
-                    $fieldarray[]=$fieldinfo->name;
-
-                  }
-           
-						if ($result->num_rows > 0) {
-						
-						
-						    // output data of each row
-						    while($row = $result->fetch_assoc()) {
-                 $var='0';
-                  foreach($row as $key=>$value)
-                  {   
-                    ?>
-                     
-                     <div class="col-sm-6" style="margin-top: 10PX">
-                          <div class="col-sm-10">
-
-                    <?php
-
-                  echo "<label for='$fieldarray[$var]'>$fieldarray[$var]</label>";
-                  echo "<input name='$fieldarray[$var]' class='form-control' size='40' value='".$value."' id='$fieldarray[$var]'/>";
-
-                  ?>
-                   </div>
-                 </div>
 
 
-                  <?php
-                  
-                  $var++;
-
-} 
-
-                }
-						}
-          }
-         ?>
-         <script type="text/javascript"> 
-          function edit()
-          {
-            var id=document.getElementById('id').value;
-          var filenumber=document.getElementById('filenumber').value;
-          var year=document.getElementById('year').value;
-          var section=document.getElementById('section').value;
-          var date =document.getElementById('date').value;
-          var subject=document.getElementById('subject').value;
-          var name=document.getElementById('name').value;
-          var tag=document.getElementById('tag').value;
-          var bundlenumber=document.getElementById('bundlenumber').value;
-          var location=document.getElementById('location').value;
-                  var xmlhttp = new XMLHttpRequest();
-                  xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("updated").innerHTML = this.responseText;
-                
-            }alert('updated');
-        };
-        xmlhttp.open("GET", "updaterecord.php?id="+id+"&filenumber=" + filenumber +"&year=" +year+"&section="+section+"&date="+date+"&subject="+subject+"&name="+name+"&tag="+tag+"&bundlenumber="+bundlenumber+"&location="+location, true);
-        xmlhttp.send();
-        }
-
-         </script>
-              <div class="col-sm-10" style=" margin-top: 20px">
-              	<div class="col-sm-4">
-			         <input type="button" class=" form-control btn btn-success" name="save" value="save" id="save" onclick="edit()">
-			     </div>
-			     <div class="col-sm-4">
-			     </div>
-			     <div class="col-sm-4">
-			      <input type="button" class=" form-control btn btn-danger" name="cancel" value="Cancel" id="cancel" onclick="window.location.href='findrecord.php'">
-
-			     </div>
-			    </div>
-         </form>
-        <!-- /.box-footer-->
-      </div>
-
-
-
-
-
-
-
-
+                </div>
             
             </div>
             </div>
