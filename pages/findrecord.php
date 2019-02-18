@@ -346,18 +346,18 @@ else
                     $var='0';
                   foreach($row as $key=>$value)
                   {  
-                    // if ($fieldarray[$var]==='id' ) {
-                    // echo "<td><form action='editrecord.php' method='POST'><br><input type='submit' class='btn' name='editname' value='".$value."'/></form></td>";
-                    // $var++; 
-                    // continue;
-                    //   }
+                     if ($fieldarray[$var]==='id' ) {
+                      $id=$row['id'];
+                echo "<td><a href='editrecord.php?id=$id'>edit </a> </td>";
+                  
+                     $var++; 
+                     continue;
+                     }
                   echo "<td>$value</td>";
 
+                }   echo "</tr>";
 
-                } 
-                $id=$row['id'];
-                echo "<td><a href='editrecord.php?id=$id'> edit </a> </td>";
-                  echo "</tr>";
+                
                 }
 
             } else {
