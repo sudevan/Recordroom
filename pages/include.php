@@ -75,11 +75,11 @@
                 
                 <div class="pull-right">
 
-                  <a href="login.php" class="btn btn-default btn-flat">Sign out</a>
-                </div>
-<!--  <form action="login.php" method="post" id="frmLogout">
+ <!--                 <a href="login.php" class="btn btn-default btn-flat">Sign out</a>
+                </div> -->
+ <form action="login.php" method="post" id="frmLogout">
         <input type="submit" name="logout" value="Logout" class="btn btn-block btn-success" style="margin-top: 10px;">
-        </form> -->
+        </form> 
                         </div>
 
               </li>
