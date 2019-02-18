@@ -61,10 +61,7 @@ else
     <section class="content-header">
            
              <div class="box"  style="border-top: 3px solid #00c0ef;">
-            <div class="box-header">
-              <h3 class="box-title">Record Room</h3>
-               
-            </div>
+            
          
        
                   
@@ -77,41 +74,39 @@ else
 
 
 
-                   <!-- excel form here -->
-                    <form enctype="multipart/form-data" action="excelread.php" method="post" style="padding-left: 60px;">
+              <div id="exelform" style=" display: none;">
+                <div class="box-header col-sm-12">
+                 <div class=" col-sm-6">
+                   <h3 class="box-title">Add Record</h3>
+                 </div>
+                 <div class="col-sm-4">
+                 </div>
+                 <div class="col-sm-2">
+                     <button class="btn btn-info" onclick="document.getElementById('addform').style.display='block';document.getElementById('exelform').style.display='none'">Single Add</button>
+                 </div>
+         </div>
+                            <form enctype="multipart/form-data" action="excelread.php" method="post">
 
-            <input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
+                    <input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
 
-              <table width="600">
-                <tr>
-                <td>drop excel file here :</td>
-                <td><input type="file" name="file" accept=".xls ,.ods ,.xlsx"  /></td>
-                <td><input type="submit"class="btn btn-block btn-success" value="Upload" /></td>
-                </tr>
-              </table>
+                   
+                        <div class="col-sm-6 "><label for="xl"> drop excel file here :</label>
+                        <input type="file" class="form-control" id="xl" name="file" accept=".xls ,.ods ,.xlsx"  />
+                      </div>
 
-            </form>
+                          <div class="col-sm-8" style="margin-top: 20px">
+                                <div class="col-sm-4">
+                                <div class="form-group">
+                        <input type="submit"class="btn btn-block btn-success" value="Upload" /></div></div>
 
+                                <div class="col-sm-4">
+                                  <div class="form-group">
+                                <input type="button"class="btn btn-block btn-danger" name="cancel" value="Cancel" onclick="window.location.reload();" /></div></div></div>
+                 
 
+                    </form>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-              <div class="box box-warning" style="padding-left: 60px;">
-           
-
+        </div>
 
 
 
@@ -122,23 +117,39 @@ else
 
 
 
-                       <!-- main form here -->
 
 
+
+                    
+
+               <div id="addform">
+                <div class="box-header col-sm-12">
+                 <div class=" col-sm-6">
+                   <h3 class="box-title">Add Record</h3>
+                 </div>
+                 <div class="col-sm-4">
+                 </div>
+                 <div class="col-sm-2">
+                     <button class="btn btn-info" onclick="document.getElementById('exelform').style.display='block';document.getElementById('addform').style.display='none'">Bulk Add</button>
+                 </div>
+         </div>
                        <form action="addrecord.php" role="form" method="post" >
                 <!-- text input -->
-                
-                  <div class="col-sm-4" style="margin-bottom: 10px; margin-top: 10px">
-                          <div class="col-sm-12"  >
-                  <label>File number</label>
-                  <input type="text" name="filenumber" class="form-control" placeholder="Enter the filenumber" >
-                </div>    </div>
-                                <div class="col-md-8" style="margin-bottom: 10px;margin-top: 10px">
-                          <div class="col-md-6">
-                  <label>Year</label>
-                  <input type="text" name="year" class="form-control" placeholder="Enter the year">
-                </div></div>
-                      <div class="col-sm-4" style="margin-bottom: 10px; margin-top: 10px">
+                    <div class="col-sm-12">
+                         <div class="col-sm-4" style="margin-bottom: 10px; margin-top: 10px">
+                              <div class="col-sm-12"  >
+                                    <label>File number</label>
+                                    <input type="text" name="filenumber" class="form-control" placeholder="Enter the filenumber" >
+                              </div>    
+                         </div>
+
+                        <div class="col-md-4" style="margin-bottom: 10px;margin-top: 10px">
+                              <div class="col-md-12">
+                                      <label>Year</label>
+                                      <input type="text" name="year" class="form-control" placeholder="Enter the year">
+                              </div>
+                        </div>
+                         <div class="col-sm-4" style="margin-bottom: 10px; margin-top: 10px">
                           <div class="col-sm-12"  >
             <label>Section</label>
               <select name="section" id="cboproduct"   class="form-control"  onchange="load_product_type(),loadcomp()"  >
@@ -158,56 +169,136 @@ else
               
         </div>
 </div>
-                <!-- textarea -->
-               <div class="col-md-8" style="margin-bottom: 10px;margin-top: 10px">
-                          <div class="col-md-6">
-                  <label>tags</label>
-                  <textarea class="form-control" name="tags" rows="2" placeholder="Enter the space seperated tag"  ></textarea>
-                </div></div>
-                  <div class="col-sm-4" style="margin-bottom: 10px; margin-top: 10px">
+                    </div>
+
+
+
+
+
+
+
+
+  <div class="col-sm-12">
+
+                     
+             
+
+<div class="col-sm-4" style="margin-bottom: 10px; margin-top: 10px">
                           <div class="col-sm-12"  >
 
                   <label>Subject</label>
                   <input type="text" name="subject" class="form-control" placeholder="Enter the subject" >
-                </div></div>
-                <div class="col-md-8" style="margin-bottom: 10px;margin-top: 10px">
-                          <div class="col-md-6">
-                  <label>person name</label>
-                  <input type="text" name="personname" class="form-control" placeholder="Enter the person name" >
-                </div></div>
-                 <div class="col-sm-4" style="margin-bottom: 10px; margin-top: 10px">
+                </div>
+              </div>
+                <div class="col-sm-8" style="margin-bottom: 10px; margin-top: 10px">
                           <div class="col-sm-12"  >
-                  <label>pages</label>
-                  <input type="text" name="pages" class="form-control" placeholder="Enter the pages" >
+                  <label>bundlenumber</label>
+                  <input type="text" name="bundlenumber" class="form-control" placeholder="Enter your bundlenumber">
                 </div></div>
-             <div class="col-md-8" style="margin-bottom: 10px;margin-top: 10px">
-                          <div class="col-md-6">
-                  <label>category</label>
-                  <input type="text" name="category" class="form-control" placeholder="Enter the category" >
-                </div></div>
+             
+</div>
+
+
+
+
+
+
+ <div class="col-sm-12">
                <div class="col-sm-4" style="margin-bottom: 10px; margin-top: 10px">
                           <div class="col-sm-12"  >
                   <label>date</label>
                   <input type="text" name="date" class="form-control" placeholder="Enter date" >
                 </div></div>
-                 <div class="col-md-8" style="margin-bottom: 10px;margin-top: 10px">
-                          <div class="col-md-6">
+                <div class="col-md-8" style="margin-bottom: 10px;margin-top: 10px">
+                          <div class="col-md-12">
                   <label>Entered by</label>
                   <input type="text" name="enteredby" class="form-control" placeholder="Enter your name">
                 </div></div>
-                <div class="col-sm-4" style="margin-bottom: 10px; margin-top: 10px">
-                          <div class="col-sm-12"  >
-                  <label>bundlenumber</label>
-                  <input type="text" name="bundlenumber" class="form-control" placeholder="Enter your bundlenumber">
+             </div>
+
+
+
+
+
+
+
+                  
+
+
+
+
+
+
+             <div class="col-sm-12">
+                <div class="col-md-4" style="margin-bottom: 10px;margin-top: 10px">
+                          <div class="col-md-12">
+                  <label>person name</label>
+                  <input type="text" name="personname" class="form-control" placeholder="Enter the person name" >
                 </div></div>
-               <div class="col-sm-12" style="margin-bottom: 10px;">
-                          <div class="col-sm-4">
-               <input type="submit"  style="width: 150px;margin-top: 22px;" class="btn btn-block btn-success" name="save" value="save record">
-              </div></div>
-              <div class="col-sm-12" style="margin-bottom: 10px;">
-               <div class="col-sm-4">
-               <input type="submit" style="width: 150px;margin-top: 22px;" class="btn btn-danger btn-block "value="cancel" name="cancel"></div></div>
+
+
+                 <div class="col-sm-4" style="margin-bottom: 10px; margin-top: 10px">
+                          <div class="col-sm-12"  >
+                  <label>pages</label>
+                  <input type="text" name="pages" class="form-control" placeholder="Enter the pages" >
+                </div></div>
+                 <div class="col-md-4" style="margin-bottom: 10px;margin-top: 10px">
+                          <div class="col-md-12">
+                  <label>category</label>
+                  <input type="text" name="category" class="form-control" placeholder="Enter the category" >
+                </div></div>
+
+           </div>
+
+
+
+           <div class="col-sm-12">
+
+            
+
+           </div>
+
+
+
           
+
+              <div class="col-sm-12">
+                  <div class="col-md-12 style="margin-bottom: 10px;margin-top: 10px">
+                          <div class="col-md-12">
+                  <label>tags</label>
+                  <textarea class="form-control" name="tags" rows="2" placeholder="Enter the space seperated tag"  ></textarea>
+                </div></div>
+
+
+               
+           </div>
+
+
+ <div class="col-sm-12">
+   <div class="col-sm-1" style="margin-bottom: 10px;">
+                          <div class="col-sm-12">
+              </div></div>
+               <div class="col-sm-4" style="margin-bottom: 10px;">
+                          <div class="col-sm-12">
+               <button type="submit"  style="margin-top: 25px;" class="btn btn-block btn-success" name="save" ><b>Save Record</b></button>
+              </div></div>
+
+
+
+            <div class="col-sm-2" style="margin-bottom: 10px;">
+                          <div class="col-sm-12">
+              </div></div>
+
+
+              <div class="col-sm-4" style="margin-bottom: 10px;">
+               <div class="col-sm-12">
+               <button type="button" style="margin-top: 25px;" class="btn btn-danger btn-block " onclick="window.location.href='homerecord.php'" name="cancel"><b>Cancel</b></button></div></div>
+                <div class="col-sm-1" style="margin-bottom: 10px;">
+                          <div class="col-sm-12">
+              </div></div>
+          </div>
+
+
       <?php
                   include("connection.php");
                   if (isset($_POST['save']))
@@ -304,8 +395,7 @@ else
 
               </form>
 
-
-
+  </div>
 
 
 
