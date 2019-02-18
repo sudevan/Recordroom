@@ -86,7 +86,7 @@ else
 
          $var=$_GET['id'];
        
-         $sql="SELECT id,filenumber,year,section,date,subject,name,tag,bundlenumber,location from view_loc where id='$var'";
+         $sql="SELECT id,filenumber,year,section,date,subject,name,bundlenumber from view_loc where id='$var'";
          $result=$conn->query($sql);	
         
             /* get column metadata */
@@ -135,6 +135,7 @@ else
          <script type="text/javascript"> 
           function edit()
           {
+
             var id=document.getElementById('id').value;
           var filenumber=document.getElementById('filenumber').value;
           var year=document.getElementById('year').value;
@@ -142,9 +143,7 @@ else
           var date =document.getElementById('date').value;
           var subject=document.getElementById('subject').value;
           var name=document.getElementById('name').value;
-          var tag=document.getElementById('tag').value;
           var bundlenumber=document.getElementById('bundlenumber').value;
-          var location=document.getElementById('location').value;
                   var xmlhttp = new XMLHttpRequest();
                   xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
@@ -152,7 +151,7 @@ else
                 
             }alert('updated');
         };
-        xmlhttp.open("GET", "updaterecord.php?id="+id+"&filenumber=" + filenumber +"&year=" +year+"&section="+section+"&date="+date+"&subject="+subject+"&name="+name+"&tag="+tag+"&bundlenumber="+bundlenumber+"&location="+location, true);
+        xmlhttp.open("GET", "updaterecord.php?id="+id+"&filenumber="+filenumber+"&year=" +year+"&section="+section+"&date="+date+"&subject="+subject+"&name="+name+"&bundlenumber="+bundlenumber, true);
         xmlhttp.send();
         }
 
