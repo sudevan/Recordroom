@@ -105,9 +105,9 @@ else
          <?php
 
          include("connection.php");
-         if (isset($_POST['submit'])) {
+         if (isset($_GET['id'])) {
 
-         $var=$_POST['editname'];
+         $var=$_GET['id'];
        
          $sql="SELECT id,filenumber,year,section,date,subject,name,tag,bundlenumber,location from view_loc where id='$var'";
          $result=$conn->query($sql);	

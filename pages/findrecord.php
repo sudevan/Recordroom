@@ -355,7 +355,8 @@ else
 
 
                 } 
-                 echo "<td><form action='editrecord.php' method='POST'><br><input type='hidden' class='btn' name='editname' value='".$row['id']."'/><button class='btn btn-success' type='submit' name='submit'><i class='fa fa-edit'></i>Edit</button></form></td>";
+                $id=$row['id'];
+                echo "<td><a href='editrecord.php?id=$id'> edit </a> </td>";
                   echo "</tr>";
                 }
 
