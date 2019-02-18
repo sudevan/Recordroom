@@ -147,9 +147,15 @@ else
                   var xmlhttp = new XMLHttpRequest();
                   xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("updated").innerHTML = this.responseText;
+               var fl = this.responseText;
+               if (fl==1) {
+                alert('updated');
+               }
+               else{
+                alert('updation failed');
+               }
                 
-            }alert('updated');
+            }
         };
         xmlhttp.open("GET", "updaterecord.php?id="+id+"&filenumber="+filenumber+"&year=" +year+"&section="+section+"&date="+date+"&subject="+subject+"&name="+name+"&bundlenumber="+bundlenumber, true);
         xmlhttp.send();
