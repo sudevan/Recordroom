@@ -24,7 +24,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="../dist/img/user2.png" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php echo $_SESSION['name']; echo "Username"; ?></span>
+              <span class="hidden-xs"><?php echo "Records"; ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -32,15 +32,15 @@
                 <img src="../dist/img/user2.png" class="img-circle" alt="User Image">
 
                 <p>
-                  <?php echo $_SESSION['name']; echo "Username"; ?>
-                  <small><?php echo $_SESSION["user_name"]; ?></small>
+                  <?php  echo "Records"; ?>
+                  <small><?php echo "records@gptcpalakkad.ac.in" ?></small>
                 </p>
               </li>
               <!-- Menu Body -->
               <li class="user-body">
                 <div class="row">
                   <div class="col-xs-4 text-center">
-                    <a href="#"><?php echo $_SESSION['f_id']; ?></a>
+                    <a href="#"></a>
                   </div>
                  
                 </div>

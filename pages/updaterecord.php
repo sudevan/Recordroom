@@ -18,10 +18,10 @@ if($result)
 	if ($result) {
 		$sql="UPDATE rec_bundle_record set bundlenumber='$bundlenumber' where recordid='$id'";
 		if ($conn->query($sql)) {
-			echo "updated record";
+			echo 1;
 		}
 	}
 } else {
-	echo "error occured";
+	echo 0;
 }
 ?>
