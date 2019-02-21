@@ -53,6 +53,7 @@ else
 {
 ?>
 <?php
+include("connection.php");
  include("include.php");
  ?>
     <!-- Content Wrapper. Contains page content -->
@@ -89,86 +90,57 @@ else
 
 
 
+    <!-- Main content -->
+    <section class="content" >
 
+      <div class="row">
+        <div class="col-md-3">
 
+          <!-- Profile Image -->
+          <div class="box box-primary">
+            <div>
+              
+              <p class="text-muted text-center">Record room overview</p>
 
+              <ul class="list-group list-group-unbordered">
+                <li class="list-group-item">
+                  <b>Total Records</b> <a class="pull-right">
+                    <?php 
+                    $sql="SELECT count(*) as total from rec_record_master";
+                    $result=$conn->query($sql);
+                    $data=mysqli_fetch_assoc($result);
+                    echo $data['total'];
+                     ?>
+                  </a>
+                </li>
+                <li class="list-group-item">
+                  <b>Total Bundles</b> <a class="pull-right">
+                    <?php 
+                    $sql="SELECT count(distinct bundlenumber) as total from rec_bundle_record";
+                    $result=$conn->query($sql);
+                    $data=mysqli_fetch_assoc($result);
+                    echo $data['total'];
+                     ?>
+                  </a>
+                </li>
+                <li class="list-group-item">
+                  <b>Total Locations</b> <a class="pull-right">
+                    
+                   <?php 
+                    $sql="SELECT count(distinct location) as total from rec_location_master";
+                    $result=$conn->query($sql);
+                    $data=mysqli_fetch_assoc($result);
+                    echo $data['total'];
+                     ?>
+                  </a>
+                </li>
+              </ul>
 
+              <a href="findrecord.php" class="btn btn-primary btn-block"><b>Find now</b></a>
+            </div>
+            <!-- /.box-body -->
 
-
-<div class="table table-responsive">
-
-              <div class=" box-warning">
-           
-
-
-
-
-
-
-
-
-
-
-
-                       <!-- main form here -->
-
-            
-                       <table id="example1" class="table table-bordered table-striped table-responsive">
-            <?php
-            include("connection.php");
-            $sql="SELECT distinct filenumber,year,section,date,subject,name,bundlenumber,location from view_loc order by date desc LIMIT 30";
-            $result=$conn->query($sql);
-
-            echo "<thead>";
-            echo "<tr>";
-            /* get column metadata */
-              // Get field information for all fields
-                while ($fieldinfo=mysqli_fetch_field($result))
-                  {
-     
-                    echo "<th>$fieldinfo->name</th>";
-                    $fieldarray[]=$fieldinfo->name;
-                  }
-
-            echo "</tr>";
-            echo "</thead>";
-            echo " <tbody>";
-            
-            if ($result->num_rows > 0) {
-            
-            
-                // output data of each row
-                while($row = $result->fetch_assoc()) {
-                  echo "<tr>";
-                  foreach($row as $key=>$value)
-                  {
-                    echo "<td>$value</td>";
-                  }
-                  echo "</tr>";
-                }
-            } else {
-                echo "0 results";
-            }
-             mysqli_close($conn);
-            
-               echo" </tbody>";
-                echo" <tfoot>";
-                     echo "<tr>";
-                      /* get column metadata */
-                        // Get field information for all fields
-                         foreach ($fieldarray as $field){
-                           # code...
-                        
-                            {
-               
-                              echo "<th>$field</th>";
-                            }
-                          }
-
-                      echo "</tr>";
-                ?>
-              </table>
-             </div>
+          <!-- /.box -->
 
 
 
