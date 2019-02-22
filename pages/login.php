@@ -85,7 +85,7 @@
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="button" class="btn btn-primary btn-block btn-flat" name="login"  onclick="window.location.href='homerecord.php'">Sign In</button>
+          <button type="button" class="btn btn-primary btn-block btn-flat" name="login"  onclick="window.location.href='profile.php'">Sign In</button>
         </div>
         <!-- /.col -->
       </div>

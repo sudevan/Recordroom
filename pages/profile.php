@@ -62,8 +62,8 @@ else
     <section class="content-header">
            
              <div class="box"  style="border-top: 3px solid #00c0ef;">
-            <div class="box-header">
-              <h3 class="box-title">Contact us..!</h3>
+            <div class="box-header" style="margin-bottom: 10px">
+             <center> <h3><u><b>CREDITS</b></u></h3></center>
                
             </div>
          
@@ -73,43 +73,104 @@ else
       
             <!-- /.box-header -->
             <div class="box-body" style="height: 100%">
+              
+             <div class="col-sm-12">
                
-                <div class="col-sm-12" style=" margin-top: 50px">
+          <div class="col-sm-12">
+              <!-- principal -->
+              <div class="col-sm-4" >
+              
+                <div class="col-sm-12">
+               <center> <img src="../dist/img/principal.jpg" class="img-circle" style="height: 150px;width: 150px"></center>
+               </div>
+                <div class="col-sm-12">
+                 <center><h3><b>M.CHANDRAKUMAR</b></h3></center>
+               </div>
+              </div>
+              <!-- ss -->
+              <div class="col-sm-4">
+                <div class="col-sm-12">
+               <center> <img src="../dist/img/pradeep.jpg" class="img-circle" style="height: 150px;width: 150px"></center>
+               </div>
+                <div class="col-sm-12">
+                 <center><h3><b>PRADEEP</b></h3></center>
+               </div>
+              </div>
 
-                  <div class="col-sm-4" style="border-right: 2px solid #367fa9;border-left: 2px solid #367fa9">
-                     <div class="col-sm-12"><center><img src="../dist/img/fazi.jpg" style="height: 180px; width: 180px" class="img-circle" alt="User Image"></center></div>
-                       <div class="col-sm-12"><h3><center><label>MUHAMMED FASIL PT</label></center></h3></div>
-                       <div name="details" class="col-sm-12">
-                         <div class="col-sm-3"><h4><i class="fa fa-envelope"></i></h4></div><div class="col-sm-8"><h4><a href="#" >ptfasil786@gmail.com</a></h4></div> 
-                          <div class="col-sm-3"><h4><i class="fa fa-phone"></i></h4></div><div class="col-sm-8"><h4><a href="#" >+91 81569 40210</a></h4></div>
-                             <div class="col-sm-3"><h4><i class="fa fa-facebook"></i></h4></div><div class="col-sm-8"><h4><a href="https://www.facebook.com/fasil.pt.71" >@muhammedfasil</a></h4></div>
-                       </div>
+              <!-- sudevan -->
+              <div class="col-sm-4" >
+               
+              <div class="col-sm-12">
+               <center> <img src="../dist/img/sudevan.jpg" class="img-circle" style="height: 150px;width: 150px"></center>
+               </div>
+               <div class="col-sm-12">
+                 <center><h3><b>SUDEVAN K</b></h3></center>
+               </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-12">
+              <!-- babu -->
+              <div class="col-sm-4">
+                <div class="col-sm-12">
+               <center> <img src="../dist/img/babu.jpg" class="img-circle" style="height: 150px;width: 150px"></center>
+               </div>
+                <div class="col-sm-12">
+                 <center><h3><b>BABU N</b></h3></center>
+               </div>
+              </div>
+               <!-- anjana -->
+              <div class="col-sm-4">
+                <div class="col-sm-12">
+               <center> <img src="../dist/img/anjana.jpg" class="img-circle" style="height: 150px;width: 150px"></center>
+               </div>
+                <div class="col-sm-12">
+                 <center><h3><b>ANJANA A</b></h3></center>
+               </div>
+              </div>
+              <!-- sruthi -->
+              <div class="col-sm-4">
+                <div class="col-sm-12">
+               <center> <img src="../dist/img/sruthi.jpg" class="img-circle" style="height: 150px;width: 150px"></center>
+               </div>
+                <div class="col-sm-12">
+                 <center><h3><b>SRUTHI S</b></h3></center>
+               </div>
+              </div>
 
-                  </div>
+              
+            </div>
+            <div class="col-sm-12">
+              <!-- fazi -->
+              <div class="col-sm-4">
+                
+                <div class="col-sm-12">
+               <center> <img src="../dist/img/fazi.jpg" class="img-circle" style="height: 150px;width: 150px"></center>
+               </div>
+              <div class="col-sm-12">
+                 <center><h3><b>MUHAMMED FASIL PT</b></h3></center>
+               </div>
 
-                  <div class="col-sm-4" style="border-right: 2px solid #367fa9">
-                     <div class="col-sm-12"><center><img src="../dist/img/use.jpg" style="height: 180px; width: 180px" class="img-circle" alt="User Image"></center></div>
-                       <div class="col-sm-12"><h3><center><label>SHINU N</label></center></h3></div>
-                       <div name="details" class="col-sm-12">
-                           <div class="col-sm-3"><h4><i class="fa fa-envelope"></i></h4></div><div class="col-sm-8"><h4><a href="#" >shinun@gmail.com</a></h4></div>
-                             <div class="col-sm-3"><h4><i class="fa fa-phone"></i></h4></div><div class="col-sm-8"><h4><a href="#" >+91 98089 08209</a></h4></div>
-                              <div class="col-sm-3"><h4><i class="fa fa-facebook"></i></h4></div><div class="col-sm-8"><h4><a href="https://www.facebook.com/profile.php?id=100008398609448" >@shinunandakumar</a></h4></div>                       </div>
-                  </div>
+              </div>
+             <!-- shinu -->
+              <div class="col-sm-4" >
+                
+                 <div class="col-sm-12">
+               <center> <img src="../dist/img/shinu.jpg" class="img-circle" style="height: 150px;width: 150px"></center>
+               </div>
 
-                  <div class="col-sm-4" style="border-right: 2px solid #367fa9">
-                    <div class="col-sm-12"><center><img src="../dist/img/sudevan.jpg" style="height: 180px; width: 180px" class="img-circle" alt="User Image"></center></div>
-                       <div class="col-sm-12"><h3><center><label>SUDEVAN K</label></center></h3></div>
-                       <div name="details" class="col-sm-12">
-                      <div class="col-sm-3"><h4><i class="fa fa-envelope"></i></h4></div><div class="col-sm-8"><h4><a href="#" >sudevank@gmail.com</a></h4></div>
-                             <div class="col-sm-3"><h4><i class="fa fa-phone"></i></h4></div><div class="col-sm-8"><h4><a href="#" >+91 72006 68804</a></h4></div>
-                         <div class="col-sm-3"><h4><i class="fa fa-facebook"></i></h4></div><div class="col-sm-8"><h4><a href="https://www.facebook.com/sudevank" >@sudevank</a></h4></div>
-                       </div>
-                  </div>
-                  
+                <div class="col-sm-12">
+                 <center><h3><b>SHINU N</b></h3></center>
+               </div>
+              </div>
+
+             
+
+              
+            </div>
 
 
-
-                </div>
+             </div>
             
             </div>
             </div>
