@@ -28,7 +28,9 @@ if(!empty($_POST["logout"])) {
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>record room | Log in</title>
+
+  <title>RECORDROOM</title>   
+   <link rel="icon" type="image/jpg" href="icon.jpg" class="img-circle">
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
