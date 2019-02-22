@@ -64,7 +64,6 @@ include("connection.php");
            
              <div class="box"  style="border-top: 3px solid #00c0ef;">
             <div class="box-header">
-              <h3 class="box-title">Record Room</h3>
                
             </div>
          
@@ -95,13 +94,14 @@ include("connection.php");
     <section class="content" >
 
       <div class="row">
+        <div class="col-md-4"></div>
         <div class="col-md-3">
 
           <!-- Profile Image -->
           <div class="box box-primary">
             <div>
               
-              <p class="text-muted text-center">Record room overview</p>
+              <p class="text-muted text-center"><b>RECORDROOM</b> Overview</p>
 
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">

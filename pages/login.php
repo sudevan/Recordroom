@@ -1,28 +1,28 @@
-<?php
-session_start();
-include("connection.php");
+<!-- <?php
+// session_start();
+// include("connection.php");
 	
-$message="";
-echo "$message";
+// $message="";
+// echo "$message";
 
-if(!empty($_POST["login"])) {
-  $sql="SELECT * from users where email='".$_POST["user_name"]."' and password='".$_POST["password"]."'";
-  $result=$conn->query($sql); 
-  $row = $result->fetch_assoc();
+// if(!empty($_POST["login"])) {
+//   $sql="SELECT * from users where email='".$_POST["user_name"]."' and password='".$_POST["password"]."'";
+//   $result=$conn->query($sql); 
+//   $row = $result->fetch_assoc();
 
-	if(is_array($row)) {
-  	$_SESSION["user_name"] = $row['email'];
-    $_SESSION['usertype']=$row['usertype'];
-  	} else {
-  	 $message = "Invalid Username or Password!";
-  	}
-}
-if(!empty($_POST["logout"])) {
-	$_SESSION["user_name"] = "";
-  $_SESSION['usertype']="";
-	session_destroy();
-}
-?>
+// 	if(is_array($row)) {
+//   	$_SESSION["user_name"] = $row['email'];
+//     $_SESSION['usertype']=$row['usertype'];
+//   	} else {
+//   	 $message = "Invalid Username or Password!";
+//   	}
+// }
+// if(!empty($_POST["logout"])) {
+// 	$_SESSION["user_name"] = "";
+//   $_SESSION['usertype']="";
+// 	session_destroy();
+// }
+?> -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -85,7 +85,7 @@ if(!empty($_POST["logout"])) {
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat" name="login" value="Login">Sign In</button>
+          <button type="button" class="btn btn-primary btn-block btn-flat" name="login"  onclick="window.location.href='homerecord.php'">Sign In</button>
         </div>
         <!-- /.col -->
       </div>
@@ -108,9 +108,7 @@ if(!empty($_POST["logout"])) {
   <div class="login-box-body">
 	    <p class="login-box-msg"><i class="fa fa-spin fa-refresh"></i> Redirecting to dashboard</p>
 	</div>
-<script type="text/javascript">
-window.location.assign("homerecord.php"); 
-</script>
+
 <?php } ?>
 <!-- jQuery 3 -->
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
