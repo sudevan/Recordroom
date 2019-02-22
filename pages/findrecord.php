@@ -278,7 +278,7 @@ $result=$conn->query($sql); if ($result->num_rows > 0) {
           {
             echo "<script>document.getElementById('search').style.display='none';document.getElementById('table').style.display='block';</script>";
             // echo "<h3 class='box-title'>Search result</h3>";
-             $field_head = array('Id','Filenumber','Year','Section','Subject','Name','Bundlenumber','Location');
+             $field_head = array('Filenumber','Year','Section','Subject','Name','Bundlenumber','Location');
              $ar_length=count($field_head);
 
 
@@ -341,6 +341,10 @@ $result=$conn->query($sql); if ($result->num_rows > 0) {
             echo "<tr>";
             /* get column metadata */
               // Get field information for all fields
+             while ($fieldinfo=mysqli_fetch_field($result))
+                  {
+                    $fieldarray[]=$fieldinfo->name;
+                  }
                 for($x = 0; $x < $ar_length; $x++)
                   {
               
@@ -360,7 +364,12 @@ $result=$conn->query($sql); if ($result->num_rows > 0) {
                   echo "<tr>";
                     $var='0';
                   foreach($row as $key=>$value)
-                  {  
+                  { 
+                    if ($fieldarray[$var]==='id' ) {
+    
+                    $var++; 
+                    continue;
+                      }
                       
                   
                   echo "<td>$value</td>";
