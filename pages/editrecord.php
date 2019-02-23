@@ -8,7 +8,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AddRecord</title>
+ <title>RECORDROOM</title>
+    <link rel="icon" type="image/jpg" href="icon.jpg" class="img-circle">
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -46,7 +47,7 @@
 <body class="hold-transition skin-blue sidebar-mini">
     <?php
 
- if(empty($_SESSION["user_name"])) { 
+ if(!empty($_SESSION["user_name"])) { 
 
   echo "<h3> <a href = login.php>Click here to login </a> <h3>";
 }
@@ -147,9 +148,15 @@ else
                   var xmlhttp = new XMLHttpRequest();
                   xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("updated").innerHTML = this.responseText;
+               var fl = this.responseText;
+               if (fl==1) {
+                alert('updated');
+               }
+               else{
+                alert('updation failed');
+               }
                 
-            }alert('updated');
+            }
         };
         xmlhttp.open("GET", "updaterecord.php?id="+id+"&filenumber="+filenumber+"&year=" +year+"&section="+section+"&date="+date+"&subject="+subject+"&name="+name+"&bundlenumber="+bundlenumber, true);
         xmlhttp.send();

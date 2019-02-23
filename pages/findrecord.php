@@ -1,4 +1,3 @@
-
 <?php 
  session_start();
 ?>
@@ -44,15 +43,14 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
     <?php
-
- if(empty($_SESSION["user_name"])) { 
-
+ if(!empty($_SESSION["user_name"])) { 
   echo "<h3> <a href = login.php>Click here to login </a> <h3>";
 }
 else
 {
 ?>
 <?php
+include("connection.php");
  include("include.php");
  ?>
     <!-- Content Wrapper. Contains page content -->
@@ -90,17 +88,22 @@ else
             <label>Section</label>
               <select name="section" id="cboproduct"   class="form-control"  onchange="load_product_type(),loadcomp()" >
                 <option value="0" >Select a section</option>
-                <option value="A">A</option>
-                <option value="A1">A1</option>
-               <option value="B">B</option>
-                <option value="C">C</option>
-                <option value='C5'>C5</option>
-                <option value="D">D</option>
-                <option value="D1">D1</option>
-                <option value="D2">D2</option>
-                <option value='E'>E</option>
-                <option value='E1'>E1</option>
-                <option value='E2'>E2</option>
+<?php 
+$sql="SELECT distinct section from view_loc";
+$result=$conn->query($sql); if ($result->num_rows > 0) {
+            
+            
+                // output data of each row
+                while($row = $result->fetch_assoc()) {
+                  foreach($row as $key=>$value)
+                  {  
+                     
+                echo "<option value='$value' >$value</option>";
+                     }
+                  
+                }
+              }
+ ?>
               </select>
               
         </div> 
@@ -129,14 +132,22 @@ else
           <label>Category</label>
               <select name="category" id="cboproduct"   class="form-control"  onchange="load_product_type(),loadcomp()" >
                 <option value="0" >Select a category</option>
-                <option value="File">File</option>
-                <option value="Receipt Book">Receipt Book</option>
-               <option value="CashBook">CashBook</option>
-                <option value="Register">Register</option>
-                <option value='Cheque'>Cheque</option>
-                <option value="Stock File">Stock File</option>
-                <option value="Tapal">Tapal</option>
-              </select>
+               <?php 
+$sql="SELECT distinct category from view_loc";
+$result=$conn->query($sql); if ($result->num_rows > 0) {
+            
+            
+                // output data of each row
+                while($row = $result->fetch_assoc()) {
+                  foreach($row as $key=>$value)
+                  {  
+                     
+                echo "<option value='$value' >$value</option>";
+                     }
+                  
+                }
+              }
+ ?></select>
             </div></div>
 </div>
 
@@ -259,14 +270,13 @@ else
 
            
         <?php
-         include("connection.php");
+         
          if (isset($_POST['search']))
           {
             echo "<script>document.getElementById('search').style.display='none';document.getElementById('table').style.display='block';</script>";
             // echo "<h3 class='box-title'>Search result</h3>";
-             
-
-
+             $field_head = array('Filenumber','Year','Section','Subject','Name','Bundlenumber','Location');
+             $ar_length=count($field_head);
           $section=$_POST['section'];
           $subject=$_POST['subject'];
           $tags=$_POST['tags'];
@@ -275,10 +285,8 @@ else
           $bundlenumber=$_POST['bundlenumber'];
           $year=$_POST['year'];
           $category=$_POST['category'];
-
         $exploded=explode(" ",$tags);
-
-        $sql="SELECT id,filenumber,year,section,date,subject,name,bundlenumber,location from view_loc  where " ;
+        $sql="SELECT id,filenumber,year,section,subject,name,bundlenumber,location from view_loc  where " ;
         
         $conjunction="";
         if(!empty($section))
@@ -286,7 +294,6 @@ else
           $sql=$sql."section='$section'";
           $conjunction=" and ";
           
-
         }
         if (!empty($filenumber)) {
           $sql=$sql.$conjunction." filenumber='$filenumber'";
@@ -296,11 +303,9 @@ else
         if (!empty($subject)) {
           $sql=$sql.$conjunction." subject like '%$subject%'";
           $conjunction=" and ";
-
         }
         if (!empty($person)) {
           $sql=$sql.$conjunction."name like '%$person%'";
-
           $conjunction=" and ";
         }
         if (!empty($year)) {
@@ -321,18 +326,20 @@ else
         }
          
             $result=$conn->query($sql);
-
             echo "<thead>";
             echo "<tr>";
             /* get column metadata */
               // Get field information for all fields
-                while ($fieldinfo=mysqli_fetch_field($result))
+             while ($fieldinfo=mysqli_fetch_field($result))
                   {
-              
-                    echo "<th>$fieldinfo->name</th>";
                     $fieldarray[]=$fieldinfo->name;
                   }
-
+                for($x = 0; $x < $ar_length; $x++)
+                  {
+              
+                    echo "<th>$field_head[$x]</th>";
+                    
+                  }
             echo "</tr>";
             echo "</thead>";
             echo " <tbody>";
@@ -345,21 +352,19 @@ else
                   echo "<tr>";
                     $var='0';
                   foreach($row as $key=>$value)
-                  {  
-                     if ($fieldarray[$var]==='id' ) {
-                      $id=$row['id'];
-                echo "<td><a href='editrecord.php?id=$id'>edit </a> </td>";
+                  { 
+                    if ($fieldarray[$var]==='id' ) {
+    
+                    $var++; 
+                    continue;
+                      }
+                      
                   
-                     $var++; 
-                     continue;
-                     }
                   echo "<td>$value</td>";
-
-                }   echo "</tr>";
-
+                }$id=$row['id'];
+                echo "<td><a href='editrecord.php?id=$id'>edit </a> </td>";   echo "</tr>";
                 
                 }
-
             } else {
                 echo "0 results";
             }
@@ -370,15 +375,12 @@ else
                      echo "<tr>";
                       /* get column metadata */
                         // Get field information for all fields
-
-                         foreach ($fieldarray as $field){
-                           # code...
-                        
-                            { 
-                              echo "<th>$field</th>";
-                            }
-                          }
-
+                  for($x = 0; $x < $ar_length; $x++)
+                  {
+              
+                    echo "<th>$field_head[$x]</th>";
+                    
+                  }
                       echo "</tr>";endl:
                       }
                 ?> 
