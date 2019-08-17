@@ -85,12 +85,12 @@
 		$filenumber=$newrecord['file number'];
 		$section=$newrecord['section number'];
 		$year=$newrecord['year'];
-		$subject=$newrecord['Subject'];
-		$ddate=$newrecord['Date'];
+		$subject=$newrecord['subject'];
+		$ddate=$newrecord['date'];
 		$enteredby=1;
 		$pages=$newrecord['pages'];
-		$tags=$newrecord['Tag'];
-		$bundlenumber = $newrecord['Bundle number'];
+		$tags=$newrecord['tag'];
+		$bundlenumber = $newrecord['bundle number'];
 		$ddate = date("Y-m-d", strtotime($ddate));
 		$category=$newrecord['category'];
 		if($filenumber == '')
@@ -101,9 +101,9 @@
 			$ddate="''";
 			# code...
 		}
-		if($newrecord['Person'] != '' )
+		if($newrecord['person'] != '' )
 		{
-			$personid =  getPersonid($newrecord['Person']);
+			$personid =  getPersonid($newrecord['person']);
 		}
 		else
 		{
@@ -176,6 +176,6 @@
 	?>
 	<html>
 	<body>
-	<?php echo "Hello";?>
+	<?php echo "<script>alert('successfully added the records');window.location.assign('addrecord.php');</script>";?>
 	</body>
 	</html>

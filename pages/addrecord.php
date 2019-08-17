@@ -46,7 +46,7 @@
 <body class="hold-transition skin-blue sidebar-mini">
     <?php
 
- if(empty($_SESSION["user_name"])) { 
+ if(!empty($_SESSION["user_name"])) { 
 
   echo "<h3> <a href = login.php>Click here to login </a> <h3>";
 }
@@ -91,7 +91,7 @@ else
                     <input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
 
                    
-                        <div class="col-sm-6 "><label for="xl"> drop excel file here :</label>
+                        <div class="col-sm-6 "><label for="xl"> drop excel records here :</label>
                         <input type="file" class="form-control" id="xl" name="file" accept=".xls ,.ods ,.xlsx"  />
                       </div>
 

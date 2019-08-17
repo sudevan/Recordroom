@@ -46,7 +46,7 @@
 <body class="hold-transition skin-blue sidebar-mini">
     <?php
 
- if(empty($_SESSION["user_name"])) { 
+ if(!empty($_SESSION["user_name"])) { 
 
   echo "<h3> <a href = login.php>Click here to login </a> <h3>";
 }
