@@ -40,6 +40,12 @@
     $recordtable="rec_location_master";
     $bundlenumber=$newrecord['bundle_number'];
     $location=$newrecord['location'];
+    $check="SELECT location from $recordtable where bundle_number='$bundlenumber'";
+    $result=$conn->query($check);
+    $data=mysqli_fetch_assoc($result);
+    $id=$data['location'];
+    if ($id===null) {
+
     $sql="INSERT into $recordtable values('$bundlenumber','$location')";
     $result=$conn->query($sql);
     if($result)
@@ -49,8 +55,15 @@
     }
     else
     {
-      echo "failed to insert on bundle_location";
+      echo "failed to insert on bundle_location $id";
     }
   }
+else 
+{
+  $sql="UPDATE $recordtable set location='$location' where bundle_number='$bundlenumber'";
+  $result=$conn->query($sql);
+  echo "<script>alert('successfully updated the location');window.location.assign('addlocation.php');</script>";
+}
+}
     readExcel($_FILES['file']['tmp_name'] );
     ?>

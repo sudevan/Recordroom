@@ -48,7 +48,7 @@
 
  if(!empty($_SESSION["user_name"])) { 
 
-  echo "<h3> <a href = login.php>Click here to login </a> <h3>";
+  echo "<h3> <a href = login.php>hello </a> <h3>";
 }
 else
 {
@@ -113,7 +113,7 @@ else
               <!-- babu -->
               <div class="col-sm-4">
                 <div class="col-sm-12">
-               <center> <img src="../dist/img/babu.jpg" class="img-circle" style="height: 150px;width: 150px"></center>
+               <center> <img src="../dist/img/babuvl.jpg" class="img-circle" style="height: 150px;width: 150px"></center>
                </div>
                 <div class="col-sm-12">
                  <center><h3><b>BABU VALLANGHY</b></h3></center>

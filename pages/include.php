@@ -90,8 +90,8 @@
         <li><a href="addrecord.php"><i class="fa fa-book text-red"></i> <span>Add Record</span></a></li>
         <li><a href="findrecord.php"><i class="fa fa-search text-green"></i> <span>Find Record</span></a></li>
         <li><a href="addlocation.php"><i class="fa fa-map text-yellow"></i> <span>Add Location</span></a></li>
+        <li><a href="returnfiles.php"><i class="fa fa-reply text-blue"></i> <span>Return Files</span></a></li>
 
-       
         <li class="header">LABELS</li>
         <li><a href="homerecord.php"><i class="fa fa-circle-o text-red"></i> <span>Home</span></a></li>
         <li><a href="profile.php"><i class="fa fa-circle-o text-yellow"></i> <span>Contact us!</span></a></li>

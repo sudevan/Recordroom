@@ -58,7 +58,7 @@ include("connection.php");
     <!-- Content Header (Page header) -->
     <section class="content-header">
            
-             <div class="box"  style="border-top: 3px solid #00c0ef;">
+             <div class="box"  style="border-top: 3px solid #00c0ef;overflow:scroll;height:80vh" >
             
          
        
@@ -286,7 +286,7 @@ $result=$conn->query($sql); if ($result->num_rows > 0) {
           $year=$_POST['year'];
           $category=$_POST['category'];
         $exploded=explode(" ",$tags);
-        $sql="SELECT id,filenumber,year,section,subject,name,bundlenumber,location from view_loc  where " ;
+        $sql="SELECT id,filenumber,year,section,subject,name,bundlenumber,location,is_issued     from view_loc  where " ;
         
         $conjunction="";
         if(!empty($section))
@@ -340,6 +340,8 @@ $result=$conn->query($sql); if ($result->num_rows > 0) {
                     echo "<th>$field_head[$x]</th>";
                     
                   }
+                  echo "<th colspan='2'>Actions</th>";
+
             echo "</tr>";
             echo "</thead>";
             echo " <tbody>";
@@ -349,20 +351,18 @@ $result=$conn->query($sql); if ($result->num_rows > 0) {
             
                 // output data of each row
                 while($row = $result->fetch_assoc()) {
-                  echo "<tr>";
-                    $var='0';
-                  foreach($row as $key=>$value)
-                  { 
-                    if ($fieldarray[$var]==='id' ) {
-    
-                    $var++; 
-                    continue;
-                      }
-                      
-                  
-                  echo "<td>$value</td>";
-                }$id=$row['id'];
-                echo "<td><a href='editrecord.php?id=$id'>edit </a> </td>";   echo "</tr>";
+                 echo "<tr>";
+                 echo "<td>".$row['filenumber']."</td><td>".$row['year']."</td><td>".$row['section']."</td><td>".$row['subject']."</td><td>".$row['name']."</td><td>".$row['bundlenumber']."</td><td>".$row['location']."</td>";
+                  $id=$row['id'];
+                  $filenumber=$row['filenumber'];
+                  echo "<td><a href='editrecord.php?id=$id'>edit</a> </td>";
+                  if($row['is_issued']==0){
+                  echo "<td><a href='issuerecord.php?filenumber=$filenumber'>issue </a> </td>";
+                  }else{
+                    echo "<td><a href='returnfiles.php' style='color:red'>Alreday Issued</a></td>";
+                  }
+                
+                    echo "</tr>";
                 
                 }
             } else {

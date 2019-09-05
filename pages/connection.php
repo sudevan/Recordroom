@@ -2,7 +2,7 @@
 
 	$servername 	= "localhost";
 	$username 	= "root";
-	$password 	= "1234";
+	$password 	= "12345";
 	$database	= "recordroom";
 
 $conn =mysqli_connect($servername,$username,$password,$database);

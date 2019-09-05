@@ -91,7 +91,7 @@ else
                     <input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
 
                    
-                        <div class="col-sm-6 "><label for="xl"> drop excel file here :</label>
+                        <div class="col-sm-6 "><label for="xl"> drop excel records here :</label>
                         <input type="file" class="form-control" id="xl" name="file" accept=".xls ,.ods ,.xlsx"  />
                       </div>
 
