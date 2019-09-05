@@ -92,9 +92,6 @@
                                                     echo "</tr>";
                                                 }
                                             }
-                                            else{
-                                                echo "error".$conn->error;
-                                            }
                                         ?>
                                     </tbody>
                                 </table>
