@@ -286,7 +286,7 @@ $result=$conn->query($sql); if ($result->num_rows > 0) {
           $year=$_POST['year'];
           $category=$_POST['category'];
         $exploded=explode(" ",$tags);
-        $sql="SELECT id,filenumber,year,section,subject,name,bundlenumber,location,is_issued     from view_loc  where " ;
+        $sql="SELECT id,filenumber,year,section,subject,name,bundlenumber,location,is_issued  from view_loc  where " ;
         
         $conjunction="";
         if(!empty($section))
@@ -356,10 +356,13 @@ $result=$conn->query($sql); if ($result->num_rows > 0) {
                   $id=$row['id'];
                   $filenumber=$row['filenumber'];
                   echo "<td><a href='editrecord.php?id=$id'>edit</a> </td>";
-                  if($row['is_issued']==0){
-                  echo "<td><a href='issuerecord.php?filenumber=$filenumber'>issue </a> </td>";
-                  }else{
-                    echo "<td><a href='returnfiles.php' style='color:red'>Alreday Issued</a></td>";
+                  if(0==$row['is_issued']){
+                    echo "<td><a href='issuerecord.php?id=$id'>issue </a> </td>";
+                  }elseif(1==$row['is_issued']){
+                    echo "<td><a href='returnfiles.php#".$row['id']."' style='color:red'>Alreday Issued</a></td>";
+                  }
+                  else{
+                    echo $row['is_issued'];
                   }
                 
                     echo "</tr>";

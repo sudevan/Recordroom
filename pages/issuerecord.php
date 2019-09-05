@@ -16,9 +16,9 @@
         echo "error :" .$conn->error;
     }
 }
- if(isset($_GET['filenumber'])){
-    $filenumber=$_GET['filenumber'];
-    $sql="SELECT id,filenumber,subject FROM rec_record_master where filenumber='$filenumber'";
+ if(isset($_GET['id'])){
+    $id=$_GET['id'];
+    $sql="SELECT id,filenumber,subject FROM rec_record_master where id='$id'";
  }
 ?>
 <!DOCTYPE html>

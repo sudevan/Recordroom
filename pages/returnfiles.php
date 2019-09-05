@@ -1,7 +1,7 @@
 <?php 
  session_start();
  include("connection.php");
- $sql="SELECT * FROM issue_details INNER JOIN rec_record_master ON issue_details.file=rec_record_master.id";
+ $sql="SELECT * FROM issue_details INNER JOIN rec_record_master ON issue_details.file=rec_record_master.id INNER JOIN rec_person ON rec_record_master.personid=rec_person.id";
 ?>
 <!DOCTYPE html>
 <html>
@@ -62,14 +62,15 @@
                 </div>  
                 <!-- box-body -->
                 <div class="box-body">
-                    <div class="col-sm-10">
+                    <div class="col-sm-12">
                         <div class="table-responsive">
                             <!-- form -->
                             <form method="post" action="">
                                 <table class="table table-hover table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>File</th>
+                                            <th>File ID</th>
+                                            <th>File Number</th>
                                             <th>Subject</th>
                                             <th>Issued To</th>
                                             <th>Issued At</th>
@@ -82,9 +83,9 @@
                                             $result=$conn->query($sql);
                                             if ($result->num_rows>0){
                                                 while($row=$result->fetch_assoc()){
-                                                    echo "<tr><td>".$row['file']."</td><td>".$row['subject']."</td><td>".$row['issued_to']."</td><td>".$row['issued_at']."</td><td>".$row['returned_at']."</td>";
+                                                    echo "<tr id='".$row['file']."'><td>".$row['file']."</td><td>".$row['filenumber']."</td><td>".$row['subject']."-".$row['name']."</td><td>".$row['issued_to']."</td><td>".$row['issued_at']."</td><td>".$row['returned_at']."</td>";
                                                     if(!$row['returned_at']){
-                                                        echo "<td><a href='returnfile.php?id=".$row['id']."&issued_to=".$row['issued_to']."' id='return' value='".$row['id']."'>return</a></td></tr>";
+                                                        echo "<td><a href='returnfile.php?id=".$row['file']."&issued_to=".$row['issued_to']."' id='return' value='".$row['id']."'>return</a></td></tr>";
                                                         
                                                     }else{
                                                         echo "<td>returned <i class='fa fa-check'></i></td>";
